@@ -15,7 +15,7 @@ exec --no-startup-id hsetroot -center ~/.wallpaper.png
 bindsym $super+Return exec alacritty
 
 # start dmenu (a program launcher)
-bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i -b \
+bindsym $super+space exec i3-dmenu-desktop --dmenu="dmenu -i -b \
 -fn 'Poppins:size=9' -nb '#141c21' -nf '#93a1a1' \
 -sb '#289c93' -sf '#141c21'"
 
@@ -59,7 +59,7 @@ bindsym $super+s layout toggle split
 bindsym $super+f fullscreen toggle
 
 # toggle tiling / floating
-bindsym $super+space floating toggle
+#bindsym $super+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle

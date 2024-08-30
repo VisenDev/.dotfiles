@@ -9,7 +9,7 @@ order += "load"
 order += "cpu_temperature 0"
 order += "wireless wlan0"
 order += "memory"
-#order += "volume master"
+order += "disk /"
 order += "battery 0"
 order += "time"
 
@@ -26,17 +26,14 @@ memory {
 	format = "<span background='#696ebf'>    </span><span background='#bfbaac'> Ram Usage %used  </span>"
 }
 
+
+disk / {
+	format = "<span background='#a96e5f'>    </span><span background='#bfbaac'> Disk Space %free </span>"
+}
+
 wireless wlan0 {
 	format_up = "<span background='#289c93'>    </span><span background='#bfbaac'>  %essid  </span>"
 	format_down = "<span background='#289c93'>    </span><span background='#bfbaac'>  Disconnected  </span>"
-}
-
-volume master {
-	format = "<span background='#696ebf'>    </span><span background='#bfbaac'>  %volume  </span>"
-	format_muted = "<span background='#696ebf'>    </span><span background='#bfbaac'>  Muted  </span>"
-	device = "default"
-	mixer = "Master"
-	mixer_idx = 0
 }
 
 battery 0 {

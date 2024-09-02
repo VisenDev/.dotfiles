@@ -1,0 +1,55 @@
+general {
+	output_format = "i3bar"
+	colors = false
+	markup = pango
+	interval = 1
+}
+
+order += "load"
+order += "cpu_temperature 0"
+order += "wireless wlan0"
+order += "memory"
+order += "disk /"
+order += "battery 0"
+order += "time"
+
+load {
+	format = "<span background='#b08500'>    </span><span background='#bfbaac'> CPU Load %1min </span>"
+}
+
+cpu_temperature 0 {
+	format = "<span background='#d12f2c'>    </span><span background='#bfbaac'> CPU Temp %degrees °C  </span>"
+	path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+memory {
+	format = "<span background='#696ebf'>    </span><span background='#bfbaac'> Ram Usage %used  </span>"
+}
+
+
+disk / {
+	format = "<span background='#a96e5f'>    </span><span background='#bfbaac'> Disk Space %free </span>"
+}
+
+wireless wlan0 {
+	format_up = "<span background='#289c93'>    </span><span background='#bfbaac'>  %essid  </span>"
+	format_down = "<span background='#289c93'>    </span><span background='#bfbaac'>  Disconnected  </span>"
+}
+
+battery 0 {
+	last_full_capacity = true
+	format = "<span background='#819400'>  %status  </span><span background='#bfbaac'> Battery %percentage</span>"
+	format_down = "No Battery"
+	status_chr = ""
+	status_bat = ""
+	status_unk = ""
+	status_full = ""
+	path = "/sys/class/power_supply/BAT%d/uevent"
+	low_threshold = 10
+	integer_battery_capacity = true
+}
+
+time {
+	format = "<span background='#2587cc'>    </span><span background='#bfbaac'>  %b %d at %H:%M  </span>"
+}
+

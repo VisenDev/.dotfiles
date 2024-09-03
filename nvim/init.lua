@@ -60,8 +60,8 @@ vim.cmd([[
 
 local function show_floating_notification(message)
   local buf = vim.api.nvim_create_buf(false, true) -- Create a new buffer
-  local width = 50
-  local height = 3
+  local width = 30 
+  local height = 1
   
   -- Set the buffer contents
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, { message })
@@ -71,7 +71,7 @@ local function show_floating_notification(message)
     relative = 'editor',
     width = width,
     height = height,
-    col = (vim.o.columns - width) / 2,
+    col = 1,--(vim.o.columns - width) / 2,
     row = (vim.o.lines - height) / 2,
     anchor = 'NW',
     border = 'rounded',

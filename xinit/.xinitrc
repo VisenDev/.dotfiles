@@ -10,4 +10,4 @@ dwmstatus 2>&1 >/dev/null &
 # blueman
 blueman-applet &
 
-exec dbus-run-session dwm
+exec dwm

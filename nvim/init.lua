@@ -153,16 +153,28 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'lua',
-    callback = function(ev)
-        vim.lsp.start({
-            name = 'luals',
-            cmd = {'/home/robertb/.local/bin/lua-language-server/bin/lua-language-server'},
-            root_dir = vim.fs.dirname(vim.fs.find({'.luarc.json'}, { upward = true })[1]),
-        })
-    end,
-})
+require'lspconfig'.lua_ls.setup{}
+
+--vim.api.nvim_create_autocmd('FileType', {
+--    pattern = 'lua',
+--    callback = function(ev)
+--        --show_floating_notification("lua ls started")
+--        vim.lsp.start({
+--            name = 'luals',
+--            cmd = {'lua-language-server'},
+--            --root_dir = vim.fs.dirname(vim.fs.find({'.luarc.json'}, { upward = true })[1]),
+--        })
+--    end,
+--})
+
+
+--vim.api.nvim_create_autocmd('BufReadPost', {
+--    pattern = '*.lua',
+--    callback = function(ev)
+--        vim.cmd[[set filetype]]
+--        vim.cmd[[LspStart]]
+--    end,
+--})
 
 vim.api.nvim_create_autocmd('BufRead', {
     pattern = '*.fs',

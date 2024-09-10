@@ -15,7 +15,7 @@ brightnessctl set
 
 # Window Manager
 * edit "~/.aur/dwm/config.h"
-* rebuilt via "makepkg -sif"
+* rebuild via "makepkg -sif"
 
 # Status Menu
 * edit "~/c/dwmstatus"

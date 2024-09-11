@@ -91,14 +91,14 @@ local function show_floating_notification(message)
 end
 
 --Quick buffer swap
-vim.api.nvim_create_autocmd('BufWinEnter', {
-    pattern = '',
-    callback = function()
-        local buf = vim.api.nvim_get_current_buf()  -- Get the current buffer ID
-        local buf_name = vim.api.nvim_buf_get_name(buf)  -- Get the buffer name
-        show_floating_notification(buf_name)
-    end,
-})
+--vim.api.nvim_create_autocmd('BufWinEnter', {
+--    pattern = '',
+--    callback = function()
+--        local buf = vim.api.nvim_get_current_buf()  -- Get the current buffer ID
+--        local buf_name = vim.api.nvim_buf_get_name(buf)  -- Get the buffer name
+--        show_floating_notification(buf_name)
+--    end,
+--})
 
 vim.api.nvim_set_keymap('n', '<Space>', ':bn<Cr>', {noremap=true})
 vim.api.nvim_set_keymap('n', '<S-Space>', ':bp<Cr>', {noremap=true})

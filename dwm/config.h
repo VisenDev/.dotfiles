@@ -8,6 +8,8 @@ static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unm
 static const char *miccmd[] = { "amixer", "set", "Capture", "toggle", NULL };
 static const char *brupcmd[] = { "brightnessctl", "set", "+10%", NULL };
 static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
+static const char *screenshotcmd[] = { "spectacle", "-r", NULL };
+//static const char *screenshotcmd[]  = { "scrot", "-d3", "/home/username/Pictures/screenshots/%Y-%m-%d-%s_$wx$h.jpg", NULL };
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -73,6 +75,7 @@ static const char *browsercmd[]  = { "brave", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = screenshotcmd} },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
 	//{ MODKEY,                       XK_b,      togglebar,      {0} },

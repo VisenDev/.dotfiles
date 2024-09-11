@@ -29,3 +29,4 @@ blueberry
 free -m
 zenith
 htop
+df -h

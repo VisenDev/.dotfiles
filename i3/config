@@ -104,7 +104,7 @@ bar {
 	status_command i3status
 	position top
 	workspace_min_width 24
-	padding 2px 8px 2px 8px
+	#padding 2px 8px 2px 8px
 	strip_workspace_numbers yes
 
 	colors {
@@ -121,12 +121,12 @@ bar {
 }
 
 # colour of border, background, text, indicator, and child_border
-client.focused #d12f2c #263640 #93a1a1 #696ebf #2587cc1
-client.focused_inactive #263640 #b08500 #93a1a1 #263640 #263640
-client.unfocused #263640 #b08500 #93a1a1 #263640 #263640
-client.urgent #263640 #b08500 #93a1a1 #263640 #263640
-client.placeholder #263640 #b08500 #93a1a1 #263640 #263640
-client.background #263640
+#client.focused #d12f2c #263640 #93a1a1 #696ebf #2587cc1
+#client.focused_inactive #263640 #b08500 #93a1a1 #263640 #263640
+#client.unfocused #263640 #b08500 #93a1a1 #263640 #263640
+#client.urgent #263640 #b08500 #93a1a1 #263640 #263640
+#client.placeholder #263640 #b08500 #93a1a1 #263640 #263640
+#client.background #263640
 
 # window rules, you can find the window class using xprop
 for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable

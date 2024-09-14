@@ -6,5 +6,7 @@
 
 # start menubar
 dwmstatus 2>&1 >/dev/null &
-
+pipewire &
+wireplumber &
+pipewire-pulse &
 exec dbus-run-session dwm

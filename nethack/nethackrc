@@ -1,1 +1,3 @@
 OPTIONS=windowtype:curses
+OPTIONS=!autopickup
+OPTIONS=runtype:walk

@@ -33,3 +33,4 @@ df -h
 
 # Check Battery
 acpi
+linux-terminal-battery-status

@@ -1,4 +1,5 @@
-theme = "dracula"
+theme = "base16_transparent"
+#c:wjktheme = "dracula"
 
 [editor]
 line-number = "relative"

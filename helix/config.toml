@@ -1,0 +1,6 @@
+#theme = "horizon-dark"
+theme = "dracula"
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+

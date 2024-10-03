@@ -153,7 +153,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-require'lspconfig'.lua_ls.setup{}
+--require'lspconfig'.lua_ls.setup{}
 
 --vim.api.nvim_create_autocmd('FileType', {
 --    pattern = 'lua',
@@ -187,6 +187,17 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = 'glsl',
     callback = function(ev)
         vim.cmd[[set syntax=c]]
+    end,
+})
+
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = '*.scm',
+    callback = function(ev)
+        vim.lsp.start({
+            name = 'gambit-lsp-server',
+            cmd = {'gambit-lsp-server'},
+        })
     end,
 })
 

@@ -30,3 +30,7 @@ free -m
 zenith
 htop
 df -h
+
+# Check Battery
+acpi
+linux-terminal-battery-status

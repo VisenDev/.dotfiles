@@ -30,6 +30,8 @@ free -m
 zenith
 htop
 df -h
+bashtop
+btop
 
 # Check Battery
 acpi

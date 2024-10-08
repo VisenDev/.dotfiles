@@ -1,0 +1,22 @@
+* {
+    font-family: Courier;
+    font-size: 13px;
+}
+
+#waybar {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor,
+#window,
+#workspaces {
+    margin: 0 2px;
+}

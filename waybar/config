@@ -1,0 +1,22 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "modules-right": [ "disk", "memory", "cpu", "battery", "clock"],
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip": true,
+    },
+    "battery": {
+            "format": "{}",
+     },
+    "cpu": {
+        "interval": 5,
+    },
+    "memory": {
+        "interval": 30,
+    },
+    "disk": {
+        "interval": 30,
+    },
+}
+

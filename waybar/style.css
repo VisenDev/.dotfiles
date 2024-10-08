@@ -7,16 +7,20 @@
     background-color: #333333;
     color: #ffffff;
 }
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#pulseaudio,
-#tray,
-#mode,
-#idle_inhibitor,
-#window,
-#workspaces {
+#clock {
+    color: #ffffff;
+    margin: 0 2px;
+}
+#battery {
+    color: #ffffff;
+    margin: 0 2px;
+}
+#cpu {
+    color: #11ee11;
+    margin: 0 2px;
+}
+#memory
+{
+    color: #ee1111;
     margin: 0 2px;
 }

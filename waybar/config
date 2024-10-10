@@ -3,19 +3,22 @@
     "position": "bottom",
     "modules-right": [ "disk", "memory", "cpu", "battery", "clock"],
     "clock": {
-        "format": "{:%H:%M}",
+        "format": " {:%H:%M} ",
         "tooltip": true,
     },
     "battery": {
-            "format": "{}",
+            "format": " Bat: {}% ",
      },
     "cpu": {
+        "format": " Load: {} ",
         "interval": 5,
     },
     "memory": {
-        "interval": 30,
+        "format": " Mem: {}% ",
+        "interval": 5,
     },
     "disk": {
+        "format": " Disk Free: {}% ",
         "interval": 30,
     },
 }

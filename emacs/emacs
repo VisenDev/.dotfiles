@@ -26,3 +26,4 @@
 (define-key evil-normal-state-map "\C-p" 'evil-paste-pop)
 
 (xterm-mouse-mode)
+(setq backup-directory-alist `(("." . "~/.emacs-backups")))  ;; Store backups in a specific folder

@@ -4,7 +4,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes nil)
- '(package-selected-packages '(evil zig-mode slime)))
+ '(geiser-mode-smart-tab-p t)
+ '(package-selected-packages
+   '(cider clojure-mode evil geiser geiser-racket markdown-mode nim-mode
+	   racket-mode zig-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -12,8 +15,10 @@
  ;; If there is more than one, they won't work right.
  )
 
+(bind-key "C-c <tab>" 'complete-symbol geiser-mode)
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
+
+
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl")
 
@@ -22,8 +27,20 @@
 
 (require 'evil)                                                                                                                      (evil-mode 1)                                                                                                                                          
 
-(define-key evil-normal-state-map "\C-n" 'evil-paste-pop-next)
-(define-key evil-normal-state-map "\C-p" 'evil-paste-pop)
+;;(define-key evil-normal-state-map "\C-n" 'evil-paste-pop-next)
+;;(define-key evil-normal-state-map "\C-p" 'evil-paste-pop)
 
 (xterm-mouse-mode)
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))  ;; Store backups in a specific folder
+
+
+(set-face-attribute 'default nil :height 170)
+
+
+;;melpa
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)

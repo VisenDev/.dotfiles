@@ -6,8 +6,10 @@
  '(custom-enabled-themes nil)
  '(geiser-mode-smart-tab-p t)
  '(package-selected-packages
-   '(cider clojure-mode evil geiser geiser-racket markdown-mode nim-mode sly
-	   racket-mode zig-mode)))
+   '(cider clojure-mode evil geiser geiser-racket markdown-mode nim-mode
+           sly racket-mode zig-mode))
+ '(ring-bell-function #'ignore)
+ '(visible-bell nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,18 +17,19 @@
  ;; If there is more than one, they won't work right.
  )
 
-(bind-key "C-c <tab>" 'complete-symbol geiser-mode)
+;(bind-key "C-c <tab>" 'complete-symbol geiser-mode)
 
 
 
 ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "sbcl")
+(setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
 
 (load-theme 'wheatgrass)
 
 
 (require 'evil)
-(evil-mode 1)                                                                                                                                          
+
+;(evil-mode  1)                                                                                                                                          
 
 ;(define-key evil-normal-state-map "\C-n" 'evil-paste-pop-next)
 ;(define-key evil-normal-state-map "\C-p" 'evil-paste-pop)
@@ -57,14 +60,13 @@
 (setq-default indent-tabs-mode nil) ;; convert tabs to spaces
 
 ;Keybindings
-(global-unset-key "\C-l")
-(global-unset-key "\C-h")
-(global-set-key "\C-l" (kbd "C-x <left>"))
-(global-set-key "\C-h" (kbd "C-x <right>"))
+;(global-unset-key "\C-l") (global-unset-key "\C-h")
+;(global-set-key "\C-l" (kbd "C-x <left>"))
+;(global-set-key "\C-h" (kbd "C-x <right>"))
 
 ;(global-unset-key (kbd "SPC"))
-(global-unset-key (kbd "C-SPC"))
-(global-set-key (kbd "C-SPC") (kbd "C-x 1"))
+;(global-unset-key (kbd "C-SPC"))
+;(global-set-key (kbd "C-SPC") (kbd "C-x 1"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)

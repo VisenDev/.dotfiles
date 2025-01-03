@@ -15,8 +15,8 @@ vim.cmd([[
 	set hidden
 
     "fix tabs
-	set tabstop=2
-	set shiftwidth=2
+	set tabstop=4
+	set shiftwidth=4
 	set expandtab
 
     "disable parenthesis matching
@@ -52,17 +52,27 @@ vim.cmd([[
     "goto definition with lsp
     nmap gd <c-]>
 
-    "beter colorscheme
-    colorscheme slate
+    "better colorscheme
+"    colorscheme slate
+    colorscheme habamax
 
     set formatoptions-=cro
 
+
+    "disable brackets inside parenthesis showing an error in C
+    au FileType c highlight clear Error
+
+    "parenthesis matching
+"    hi MatchParen cterm=none ctermbg=green ctermfg=blue
+
+    "autocmd BufRead,BufNewFile * syn match parens /[(){}]/ | hi parens ctermfg=red
+
     "warn on column 80
-    if exists('+colorcolumn')
-      set colorcolumn=80
-    else
-      au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    endif
+    "if exists('+colorcolumn')
+    "  set colorcolumn=80
+    "else
+    "  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    "endif
 ]])
 
 vim.api.nvim_set_keymap('n', '<Space>', ':bn<Cr>', {noremap=true})

@@ -1,6 +1,11 @@
 local vim = vim
 
+--note: :ToHtml command
+
 vim.cmd([[
+    "custom command K
+    nnoremap K yyddpkJ
+
     "line numbers
 	set number
 	set relativenumber

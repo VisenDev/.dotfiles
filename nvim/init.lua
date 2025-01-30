@@ -4,6 +4,10 @@ vim.opt.relativenumber = true
 -- Enable syntax highlighting
 vim.cmd("syntax enable")
 
+--note: :ToHtml command
+
+vim.cmd("nnoremap K yyddpkJ")
+
 -- Use better autocomplete
 vim.opt.wildmode = { "list", "longest" }
 

@@ -1,82 +1,97 @@
-local vim = vim
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-vim.cmd([[
-    "line numbers
-	set number
-	set relativenumber
+-- Enable syntax highlighting
+vim.cmd("syntax enable")
 
-    "use syntax
-	syntax enable
+-- Use better autocomplete
+vim.opt.wildmode = { "list", "longest" }
 
-    "use better autocomplete
-	set wildmode
+-- Allow swapping between buffers
+vim.opt.hidden = true
 
-    "allow swapping between buffers
-	set hidden
+-- Fix tabs
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
-    "fix tabs
-	set tabstop=4
-	set shiftwidth=4
-	set expandtab
+-- Disable parenthesis matching
+vim.g.loaded_matchparen = 1
 
-    "disable parenthesis matching
-    "let g:loaded_matchparen=1
+-- Better escape
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
 
-    "better escape
-    imap jk <Esc>
+-- Better way to swap buffers
+vim.keymap.set("n", "<Tab>", ":buffer ", { noremap = true })
+-- vim.keymap.set("n", "<S-Tab>", ":bp<CR>", { noremap = true })
+-- vim.keymap.set("n", "<Space>", ":buffer", { noremap = true })
 
-    "better way to swap buffers
-    nmap <Tab> :buffer 
-    "nmap <S-Tab> :bp<Cr>
-    "nmap <Space> :buffer
+-- Fix copy pasting
+vim.keymap.set("n", "p", '"+p', { noremap = true })
+vim.keymap.set("n", "y", '"+y', { noremap = true })
+vim.keymap.set("v", "y", '"+y', { noremap = true })
+vim.keymap.set("n", "d", '"_d', { noremap = true })
+vim.keymap.set("n", "x", '"_x', { noremap = true })
+vim.keymap.set("v", "d", '"_d', { noremap = true })
+vim.keymap.set("v", "x", '"_x', { noremap = true })
 
-    "fix copy pasting
-    nnoremap p "+p
+-- Easier way to open new files
+vim.keymap.set("n", "<C-n>", ":Vex<CR>", { noremap = true })
+vim.keymap.set("n", "<C-p>", ":e ", { noremap = true })
 
-    nnoremap y "+y
-    vnoremap y "+y
+-- Quick access to config
+vim.api.nvim_create_user_command("Config", "e ~/.config/nvim/init.lua", {})
 
-    nnoremap d "_d
-    nnoremap x "_x
+-- Goto definition with LSP
+vim.keymap.set("n", "gd", "<C-]>", { noremap = true })
 
-    vnoremap d "_d
-    vnoremap x "_x
+-- Better colorscheme
+-- vim.cmd("colorscheme slate")
+vim.cmd("colorscheme habamax")
 
-    "easier way to open new files
-    nmap <C-n> :Vex <CR>
-    nmap <C-p> :e 
+-- Remove unwanted format options
+vim.opt.formatoptions:remove("cro")
 
-    "quick access to config
-    :command Config :e ~/.config/nvim/init.lua
+-- Disable brackets inside parentheses showing an error in C
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "c",
+  command = "highlight clear Error"
+})
 
-    "goto definition with lsp
-    nmap gd <c-]>
+-- Syntax for *.cake files
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*cake",
+  command = "set syntax=lisp"
+})
 
-    "better colorscheme
-"    colorscheme slate
-    colorscheme habamax
+-- Set tab width for Lisp files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"lisp","scm","fennel"},
+  command = "set tabstop=2 shiftwidth=2"
+})
 
-    set formatoptions-=cro
+-- Disable parenthesis matching highlight
+-- vim.cmd("hi MatchParen cterm=none ctermbg=green ctermfg=blue")
 
+-- Autocmd for custom syntax highlighting
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = "*",
+--   command = "syn match parens /[(){}]/ | hi parens ctermfg=red"
+-- })
 
-    "disable brackets inside parenthesis showing an error in C
-    au FileType c highlight clear Error
-
-    "parenthesis matching
-"    hi MatchParen cterm=none ctermbg=green ctermfg=blue
-
-    "autocmd BufRead,BufNewFile * syn match parens /[(){}]/ | hi parens ctermfg=red
-
-    "warn on column 80
-    "if exists('+colorcolumn')
-    "  set colorcolumn=80
-    "else
-    "  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    "endif
-]])
+-- Warn on column 80
+if vim.fn.exists("+colorcolumn") == 1 then
+  vim.opt.colorcolumn = "80"
+else
+  vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "*",
+    command = "let w:m2=matchadd('ErrorMsg', '\\%>80v.\\+', -1)"
+  })
+end
 
 vim.api.nvim_set_keymap('n', '<Space>', ':bn<Cr>', {noremap=true})
 vim.api.nvim_set_keymap('n', '<S-Space>', ':bp<Cr>', {noremap=true})
+
 
 --Autocomplete code
 local function lsp_is_loaded()

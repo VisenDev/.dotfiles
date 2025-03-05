@@ -1,14 +1,14 @@
 {
     "layer": "bottom",
-    "position": "bottom",
+    "position": "top",
     "modules-right": [ "disk", "memory", "cpu", "battery", "clock"],
     "clock": {
         "format": " {:%H:%M} ",
         "tooltip": true,
     },
     "battery": {
-            "format": " Bat: {}% ",
-     },
+        "format": " Bat: {}% ",
+    },
     "cpu": {
         "format": " Load: {} ",
         "interval": 5,
@@ -21,5 +21,14 @@
         "format": " Disk Free: {}% ",
         "interval": 30,
     },
+    "modules-left": ["hyprland/workspaces"],
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "active-only": false,
+        "persistent-workspaces": { "*": 9 },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    }
 }
 

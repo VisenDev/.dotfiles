@@ -1,6 +1,10 @@
 * {
     font-family: Courier;
     font-size: 13px;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    margin-bottom: 0px;
 }
 
 #waybar {
@@ -9,18 +13,28 @@
 }
 #clock {
     color: #ffffff;
-    margin: 0 2px;
 }
 #battery {
     color: #ffffff;
-    margin: 0 2px;
 }
 #cpu {
     color: #11ee11;
-    margin: 0 2px;
 }
 #memory
 {
     color: #ee1111;
-    margin: 0 2px;
 }
+
+#workspaces * {
+    color: #ffffff;
+    margin: 0px;
+    padding: 0px;
+/*    background-color: #ffffff;*/
+}
+
+#workspaces button.active {
+    color: #ee00ee;
+    border-radius: 0px;
+    background-color: #000011;
+}
+

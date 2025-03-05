@@ -19,19 +19,21 @@
 
 ;(bind-key "C-c <tab>" 'complete-symbol geiser-mode)
 
-
-
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
 
-(load-theme 'wheatgrass)
+;(load-theme 'wheatgrass)
+(load-theme 'tango)
 
-
+(setq evil-want-C-u-scroll t)
 (require 'evil)
+(evil-mode 1)
 
-;(evil-mode  1)                                                                                                                                          
+;;;; ==== MY CUSTOM KEYBINDINGS ====
 
-;(define-key evil-normal-state-map "\C-n" 'evil-paste-pop-next)
+(define-key evil-normal-state-map (kbd "SPC") (kbd  "C-x b"))
+
+;(Define-key evil-normal-state-map "\C-n" 'evil-paste-pop-next)
 ;(define-key evil-normal-state-map "\C-p" 'evil-paste-pop)
 
 (xterm-mouse-mode)
@@ -43,21 +45,22 @@
 
 ;;melpa
 ;;
-(when (window-system)
-  (tool-bar-mode -1)    ;; hide toolbar
-  (scroll-bar-mode -1))  ;; hide scrollbar
-;;      (set-frame-size (selected-frame) 100 60)) ;; in px
-(global-visual-line-mode t)  ;; wrap text to words at the end of the window (def chars)
-;;(global-hl-line-mode t)      ;; highlight current line
-(global-font-lock-mode t)    ;; syntax highlight wherever
-(blink-cursor-mode 0)        ;; disabled. put (blink-cursor-blinks NN) for NN blinks. 
-;; def 10, 0 or negative = forever
-(column-number-mode)         ;; view column number in modeline
-(setq-default line-spacing 3) ;; increase line height
-(show-paren-mode 1)             ;; highlight matching parentheses
-(save-place-mode)               ;; remember point position when saving file
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil) ;; convert tabs to spaces
+;
+;(when (window-system)
+;  (tool-bar-mode -1)    ;; hide toolbar
+;  (scroll-bar-mode -1))  ;; hide scrollbar
+;;;      (set-frame-size (selected-frame) 100 60)) ;; in px
+;(global-visual-line-mode t)  ;; wrap text to words at the end of the window (def chars)
+;;;(global-hl-line-mode t)      ;; highlight current line
+;(global-font-lock-mode t)    ;; syntax highlight wherever
+;(blink-cursor-mode 0)        ;; disabled. put (blink-cursor-blinks NN) for NN blinks. 
+;;; def 10, 0 or negative = forever
+;(column-number-mode)         ;; view column number in modeline
+;(setq-default line-spacing 3) ;; increase line height
+;(show-paren-mode 1)             ;; highlight matching parentheses
+;(save-place-mode)               ;; remember point position when saving file
+;(setq-default tab-width 2)
+;(setq-default indent-tabs-mode nil) ;; convert tabs to spaces
 
 ;Keybindings
 ;(global-unset-key "\C-l") (global-unset-key "\C-h")

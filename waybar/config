@@ -1,5 +1,5 @@
 {
-    "layer": "bottom",
+    "layer": "top",
     "position": "top",
     "modules-right": [ "disk", "memory", "cpu", "battery", "clock"],
     "clock": {

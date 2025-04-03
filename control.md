@@ -30,9 +30,16 @@ free -m
 zenith
 htop
 df -h
-bashtop
-btop
 
-# Check Battery
-acpi
-linux-terminal-battery-status
+# Start Window Server
+Hyprland
+dwl
+startx
+dwm
+
+# Screen Lock
+- slock : enabled by /etc/systemd/system/slock.service
+
+# Lid Close Behavior
+controlled by /etc/systemd/logind.conf
+

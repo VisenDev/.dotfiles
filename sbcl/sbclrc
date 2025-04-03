@@ -21,21 +21,24 @@
       (funcall (intern "INSTALL-REPL" :linedit) :wrap-current t)))
 
 
+;;; CONVENIENCE CLI MACROS
 (define-symbol-macro
   make
-  (handler-case
     (let* ((dir (directory #p"*.asd"))
            (file (file-namestring (first dir)))
-           (asd-name (subseq file 0 (- (length file) 4)))
+           (asd-name (intern (subseq file 0 (- (length file) 4))))
            )
-      (defvar *make-initial-compilation* 
-        (progn (asdf:load-system (intern asd-name) :force t) t))
+
+      ;;; force recompile once
+      (defvar *force-initial-compilation* 
+        (progn (asdf:load-system asd-name :force t) t))
+
+      ;;;load system
       (format t "(asdf:load-system '~a)~%" asd-name)
-      (asdf:load-system (intern asd-name))
+      (asdf:load-system asd-name)
       )
-    (error (e)
-       (format t "an error occurred inside make, ~a~%" e)
-       )
-    )
   )
 
+(define-symbol-macro
+  ls
+  (mapcar #'file-namestring (uiop:directory-files ".")))

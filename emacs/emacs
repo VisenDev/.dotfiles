@@ -22,8 +22,8 @@
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
 
-;(load-theme 'wheatgrass)
-(load-theme 'tango)
+(load-theme 'wheatgrass)
+;(load-theme 'tango)
 
 (setq evil-want-C-u-scroll t)
 (require 'evil)
@@ -41,6 +41,28 @@
 
 
 (set-face-attribute 'default nil :height 170)
+
+;;;; ==== CUSTOM LISP KEYWORDS ====
+
+(defvar sly-repl-font-lock-keywords lisp-font-lock-keywords-2)
+(defun sly-repl-font-lock-setup ()
+  (setq font-lock-defaults
+        '(sly-repl-font-lock-keywords
+         ;; From lisp-mode.el
+         nil nil (("+-*/.<>=!?$%_&~^:@" . "w")) nil
+         (font-lock-syntactic-face-function
+         . lisp-font-lock-syntactic-face-function))))
+      
+(add-hook 'sly-repl-mode-hook 'sly-repl-font-lock-setup)
+      
+(defadvice sly-repl-insert-prompt (after font-lock-face activate)
+  (let ((inhibit-read-only t))
+    (add-text-properties
+     sly-repl-prompt-start-mark (point)
+     '(font-lock-face
+      sly-repl-prompt-face
+      rear-nonsticky
+      (sly-repl-prompt read-only font-lock-face intangible)))))
 
 
 ;;melpa

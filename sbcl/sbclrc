@@ -1,0 +1,41 @@
+
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+
+
+;;;; LINE EDIT (gnu readline for sbcl)
+(ql:quickload "linedit")
+
+;;; Check for --no-linedit command-line option.
+(if (member "--no-linedit" sb-ext:*posix-argv* :test 'equal)
+    (setf sb-ext:*posix-argv* 
+	  (remove "--no-linedit" sb-ext:*posix-argv* :test 'equal))
+    (when (interactive-stream-p *terminal-io*)
+      (require :sb-aclrepl)
+      (require :linedit)
+      (funcall (intern "INSTALL-REPL" :linedit) :wrap-current t)))
+
+
+(define-symbol-macro
+  make
+  (handler-case
+    (let* ((dir (directory #p"*.asd"))
+           (file (file-namestring (first dir)))
+           (asd-name (subseq file 0 (- (length file) 4)))
+           )
+      (defvar *make-initial-compilation* 
+        (progn (asdf:load-system (intern asd-name) :force t) t))
+      (format t "(asdf:load-system '~a)~%" asd-name)
+      (asdf:load-system (intern asd-name))
+      )
+    (error (e)
+       (format t "an error occurred inside make, ~a~%" e)
+       )
+    )
+  )
+

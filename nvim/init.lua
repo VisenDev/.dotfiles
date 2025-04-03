@@ -1,5 +1,9 @@
+local vim = vim
+
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.cmd("let g:slime_target = \"wezterm\"")
 
 -- Enable syntax highlighting
 vim.cmd("syntax enable")
@@ -20,7 +24,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 -- Disable parenthesis matching
-vim.g.loaded_matchparen = 1
+--vim.g.loaded_matchparen = 1
 
 -- Better escape
 vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
@@ -46,6 +50,8 @@ vim.keymap.set("n", "<C-p>", ":e ", { noremap = true })
 -- Quick access to config
 vim.api.nvim_create_user_command("Config", "e ~/.config/nvim/init.lua", {})
 
+vim.api.nvim_create_user_command("LspStop",  "lua vim.lsp.stop_client(vim.lsp.get_active_clients())", {})
+
 -- Goto definition with LSP
 vim.keymap.set("n", "gd", "<C-]>", { noremap = true })
 
@@ -70,7 +76,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 
 -- Set tab width for Lisp files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"lisp","scm","fennel"},
+  pattern = {"lisp", "scm","fennel"},
   command = "set tabstop=2 shiftwidth=2"
 })
 
@@ -108,8 +114,15 @@ local function is_whitespace_only()
     return line:match("^%s*$") ~= nil
 end
 
+local function is_whitespace_before_cursor()
+    local col = vim.fn.col('.') - 1
+    local line = vim.api.nvim_get_current_line()
+    local before_cursor = line:sub(1, col)
+    return before_cursor:match("^%s*$") ~= nil
+end
+
 local function tab_autocomplete(shift_pressed)
-    if is_whitespace_only() then
+    if is_whitespace_before_cursor() then
         return '\t'
     end
 
@@ -158,6 +171,8 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+
+
 --require'lspconfig'.lua_ls.setup{}
 
 --vim.api.nvim_create_autocmd('FileType', {
@@ -180,6 +195,28 @@ vim.api.nvim_create_autocmd('FileType', {
 --        vim.cmd[[LspStart]]
 --    end,
 --})
+
+
+vim.api.nvim_create_autocmd('BufRead', {
+    pattern = '*.lua',
+    callback = function(ev)
+        vim.lsp.start({
+            name = 'luals',
+            cmd = {'lua-language-server'},
+        })
+    end,
+})
+
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'lua',
+    callback = function(ev)
+        vim.lsp.start({
+            name = 'luals',
+            cmd = {'lua-language-server'},
+        })
+    end,
+})
 
 vim.api.nvim_create_autocmd('BufRead', {
     pattern = '*.fs',

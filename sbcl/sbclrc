@@ -1,23 +1,30 @@
 
-;;; The following lines added by ql:add-to-init-file:
-;#-quicklisp
-;(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-;                                       (user-homedir-pathname))))
-;  (when (probe-file quicklisp-init)
-;    (load quicklisp-init)))
+
+#-asdf
+(if (probe-file #P"~/common-lisp/asdf/build/asdf.lisp")
+  (load #P"~/common-lisp/asdf/build/asdf.lisp")
+  (load #p"asdf.lisp"))
 
 #-ocicl
-(when (probe-file #P"/home/robertb/.local/share/ocicl/ocicl-runtime.lisp")
-  (load #P"/home/robertb/.local/share/ocicl/ocicl-runtime.lisp"))
+(when (probe-file #P"~/.local/share/ocicl/ocicl-runtime.lisp")
+  (load #P"~/.local/share/ocicl/ocicl-runtime.lisp"))
 (asdf:initialize-source-registry
   (list :source-registry (list :directory (uiop:getcwd)) :inherit-configuration))
 
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
 
-;;;; LINE EDIT (gnu readline for sbcl)
-(asdf:load-system "linedit")
+(ql:quickload "linedit")
+
+
+
+
 ;(ql:quickload "linedit")
 
-;;; Check for --no-linedit command-line option.
+;; Check for --no-linedit command-line option.
 (if (member "--no-linedit" sb-ext:*posix-argv* :test 'equal)
     (setf sb-ext:*posix-argv* 
 	  (remove "--no-linedit" sb-ext:*posix-argv* :test 'equal))

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -23,6 +24,27 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+;;;; ==== QUICK INTERNET FUNCTIONS ====
+(defun clhs ()
+  (interactive)
+  (eww "https://www.lispworks.com/documentation/HyperSpec/Front/Contents.htm"))
+
+(defun google (search-terms)
+  (interactive "sSearch:")
+  (eww (concat "https://duckduckgo.com/search?q="
+	       (replace-regexp-in-string " " "+" search-terms)))
+  )
+
+;;;; ==== ALLOW EMACS TO FIND LIBGCCJIT FOR NATIVE PACKAGE COMP ====
+(setenv "LD_LIBRARY_PATH"
+        (concat "/usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/:"
+                (getenv "LD_LIBRARY_PATH")))
+
+(setenv "PKG_CONFIG_PATH"
+        (concat "/usr/local/Cellar/libgccjit/14.2.0_1/lib/pkgconfig:"
+                (getenv "PKG_CONFIG_PATH")))
+
 ;;;; ==== CHECK NATIVE COMP ====
 (defun check-native-comp ()
   (interactive)
@@ -35,7 +57,7 @@
 ;;;; ==== OPEN CONFIG ====
 (defun config ()
   (interactive)
-  (find-file "~/.dotfiles/emacs/emacs"))
+  (find-file "~/.dotfiles/emacs/init.el"))
 
 ;;;; ==== SLY ====
 (add-hook 'sly-mode-hook

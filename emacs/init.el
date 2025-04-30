@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-
+; -*- lexical-binding: t; -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -12,9 +12,8 @@
  '(geiser-mode-smart-tab-p t)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cider clojure-mode darkmine-theme dracula-theme evil exwm geiser
-	   geiser-racket magit markdown-mode nim-mode racket-mode sly
-	   w3m xkcd zig-mode))
+   '(darkmine-theme dracula-theme evil exec-path-from-shell exwm
+		    markdown-mode sly w3m with-editor xkcd zig-mode))
  '(ring-bell-function #'ignore)
  '(visible-bell nil))
 (custom-set-faces
@@ -24,6 +23,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== FULLSCREEN ====
+(toggle-frame-fullscreen)
 
 ;;;; ==== QUICK INTERNET FUNCTIONS ====
 (defun clhs ()
@@ -65,17 +66,20 @@
             (unless (sly-connected-p)
               (save-excursion (sly)))))
 (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
-
+;
 ;;;; ==== THEME ====
-(load-theme 'darkmine)
+;(load-theme 'darkmine)
 ;(load-theme 'wheatgrass)
-;(load-theme 'leuvan-dark)
+(load-theme 'leuven-dark)
 ;(load-theme 'tango)
 
 ;;;; ==== EVIL MODE ====
 (setq evil-want-C-u-scroll t)
+(setq evil-disable-insert-state-bindings t)
 (require 'evil)
-(evil-mode 1)
+(evil-set-initial-state 'char-mode 'emacs) ;;make sure evil mode is disable in terminal
+(setq evil-default-state 'normal)
+(evil-mode 1)			    
 
 ;;;; ==== MY CUSTOM KEYBINDINGS ====
 
@@ -91,25 +95,25 @@
 
 ;;;; ==== CUSTOM LISP KEYWORDS ====
 
-(defvar sly-repl-font-lock-keywords lisp-font-lock-keywords-2)
-(defun sly-repl-font-lock-setup ()
-  (setq font-lock-defaults
-        '(sly-repl-font-lock-keywords
-         ;; From lisp-mode.el
-         nil nil (("+-*/.<>=!?$%_&~^:@" . "w")) nil
-         (font-lock-syntactic-face-function
-         . lisp-font-lock-syntactic-face-function))))
-      
-(add-hook 'sly-repl-mode-hook 'sly-repl-font-lock-setup)
-      
-(defadvice sly-repl-insert-prompt (after font-lock-face activate)
-  (let ((inhibit-read-only t))
-    (add-text-properties
-     sly-repl-prompt-start-mark (point)
-     '(font-lock-face
-      sly-repl-prompt-face
-      rear-nonsticky
-      (sly-repl-prompt read-only font-lock-face intangible)))))
+;;;;(defvar sly-repl-font-lock-keywords lisp-font-lock-keywords-2)
+;;;;(defun sly-repl-font-lock-setup ()
+;;;;  (setq font-lock-defaults
+;;;;        '(sly-repl-font-lock-keywords
+;;;;         ;; From lisp-mode.el
+;;;;         nil nil (("+-*/.<>=!?$%_&~^:@" . "w")) nil
+;;;;         (font-lock-syntactic-face-function
+;;;;         . lisp-font-lock-syntactic-face-function))))
+;;;;      
+;;;;(add-hook 'sly-repl-mode-hook 'sly-repl-font-lock-setup)
+;;;;      
+;;;;(defadvice sly-repl-insert-prompt (after font-lock-face activate)
+;;;;  (let ((inhibit-read-only t))
+;;;;    (add-text-properties
+;;;;     sly-repl-prompt-start-mark (point)
+;;;;     '(font-lock-face
+;;;;      sly-repl-prompt-face
+;;;;      rear-nonsticky
+;;;;      (sly-repl-prompt read-only font-lock-face intangible)))))
 
 
 ;;melpa
@@ -147,3 +151,4 @@
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (put 'upcase-region 'disabled nil)
+

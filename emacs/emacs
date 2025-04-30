@@ -4,11 +4,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes nil)
+ '(custom-safe-themes
+   '("4acfb4e3d5e86206c4c3a834f4a9356beb25dc04c48e4e364006eff5625606ab"
+     "425b54fd2e41eb91d523c340f99661471abf8926637dd539d2d82085d4aeb7c0"
+     default))
  '(geiser-mode-smart-tab-p t)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cider clojure-mode evil exwm geiser geiser-racket magit
-	   markdown-mode nim-mode racket-mode sly w3m xkcd zig-mode))
+   '(cider clojure-mode darkmine-theme dracula-theme evil exwm geiser
+	   geiser-racket magit markdown-mode nim-mode racket-mode sly
+	   w3m xkcd zig-mode))
  '(ring-bell-function #'ignore)
  '(visible-bell nil))
 (custom-set-faces
@@ -18,17 +23,34 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== CHECK NATIVE COMP ====
+(defun check-native-comp ()
+  (interactive)
+  (if (native-comp-available-p)
+    (message "Native eLisp compilation is available!")
+    (message "Native eLisp compilation is not available  :(")
+    )
+  )
+
+;;;; ==== OPEN CONFIG ====
+(defun config ()
+  (interactive)
+  (find-file "~/.dotfiles/emacs/emacs"))
+
+;;;; ==== SLY ====
 (add-hook 'sly-mode-hook
           (lambda ()
             (unless (sly-connected-p)
               (save-excursion (sly)))))
-
-;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
 
-(load-theme 'wheatgrass)
+;;;; ==== THEME ====
+(load-theme 'darkmine)
+;(load-theme 'wheatgrass)
+;(load-theme 'leuvan-dark)
 ;(load-theme 'tango)
 
+;;;; ==== EVIL MODE ====
 (setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
@@ -42,7 +64,6 @@
 
 (xterm-mouse-mode)
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))  ;; Store backups in a specific folder
-
 
 (set-face-attribute 'default nil :height 170)
 

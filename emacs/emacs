@@ -5,9 +5,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes nil)
  '(geiser-mode-smart-tab-p t)
+ '(package-native-compile t)
  '(package-selected-packages
-   '(cider clojure-mode evil exwm geiser geiser-racket markdown-mode
-           nim-mode racket-mode sly w3m xkcd zig-mode))
+   '(cider clojure-mode evil exwm geiser geiser-racket magit
+	   markdown-mode nim-mode racket-mode sly w3m xkcd zig-mode))
  '(ring-bell-function #'ignore)
  '(visible-bell nil))
 (custom-set-faces
@@ -17,7 +18,10 @@
  ;; If there is more than one, they won't work right.
  )
 
-;(bind-key "C-c <tab>" 'complete-symbol geiser-mode)
+(add-hook 'sly-mode-hook
+          (lambda ()
+            (unless (sly-connected-p)
+              (save-excursion (sly)))))
 
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")

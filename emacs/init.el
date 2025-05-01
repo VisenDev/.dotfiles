@@ -12,8 +12,7 @@
  '(geiser-mode-smart-tab-p t)
  '(package-native-compile t)
  '(package-selected-packages
-   '(darkmine-theme dracula-theme evil exec-path-from-shell exwm
-		    markdown-mode sly w3m with-editor xkcd zig-mode))
+   '(evil sly))
  '(ring-bell-function #'ignore)
  '(visible-bell nil))
 (custom-set-faces
@@ -22,6 +21,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(setq native-comp-verbose t)
+(setq native-comp-async-report-warnings 'verbose)
+(setq native-comp-error-messages 'verbose)
 
 ;;;; ==== FULLSCREEN ====
 (toggle-frame-fullscreen)
@@ -38,13 +41,8 @@
   )
 
 ;;;; ==== ALLOW EMACS TO FIND LIBGCCJIT FOR NATIVE PACKAGE COMP ====
-(setenv "LD_LIBRARY_PATH"
-        (concat "/usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/:"
-                (getenv "LD_LIBRARY_PATH")))
-
-(setenv "PKG_CONFIG_PATH"
-        (concat "/usr/local/Cellar/libgccjit/14.2.0_1/lib/pkgconfig:"
-                (getenv "PKG_CONFIG_PATH")))
+(setenv "LD_LIBRARY_PATH" "/usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/")
+(setenv "LIBRARY_PATH" "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib /usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/")
 
 ;;;; ==== CHECK NATIVE COMP ====
 (defun check-native-comp ()

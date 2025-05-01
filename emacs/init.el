@@ -77,7 +77,7 @@
 (require 'evil)
 (evil-set-initial-state 'char-mode 'emacs) ;;make sure evil mode is disable in terminal
 (setq evil-default-state 'normal)
-(evil-mode 1)			    
+;(evil-mode 1)			    
 
 ;;;; ==== MY CUSTOM KEYBINDINGS ====
 
@@ -142,11 +142,11 @@
 ;(global-unset-key (kbd "C-SPC"))
 ;(global-set-key (kbd "C-SPC") (kbd "C-x 1"))
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;;;;;(require 'package)
+;;;;;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
-(put 'upcase-region 'disabled nil)
+;;;;;(package-initialize)
+;;;;;(put 'upcase-region 'disabled nil)
 

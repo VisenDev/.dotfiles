@@ -5,9 +5,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-native-compile t)
- '(package-selected-packages
-   '(sly))
+ '(package-selected-packages '(sly))
  '(ring-bell-function #'ignore)
+ '(url-proxy-services '(("http" . "127.0.0.1:4000")))
  '(visible-bell nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -15,6 +15,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;;;; ==== I2P PROXY ====
+(setq url-proxy-services '(("http" . "localhost:4444")))
+
+
 
 ;;;; ==== FULLSCREEN ====
 (toggle-frame-fullscreen)
@@ -87,3 +93,4 @@
 
 ;;;; ==== AUTOSTART ESHELL ====
 (eshell)
+

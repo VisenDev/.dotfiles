@@ -5,7 +5,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-native-compile t)
- '(package-selected-packages '(sly))
+ '(package-selected-packages '(evil sly))
  '(ring-bell-function #'ignore)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
  '(visible-bell nil))

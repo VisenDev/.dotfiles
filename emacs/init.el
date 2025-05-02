@@ -19,7 +19,7 @@
 
 (defun kill-all-buffers ()
   (interactive)
-  (mapcar #'kill-buffer-if-not-modified (buffer-list))
+  (mapcar #'kill-buffer (buffer-list))
   (scratch-buffer)
   )
 

@@ -17,10 +17,14 @@
  )
 
 
+(defun kill-all-buffers ()
+  (interactive)
+  (mapcar #'kill-buffer-if-not-modified (buffer-list))
+  (scratch-buffer)
+  )
+
 ;;;; ==== I2P PROXY ====
 (setq url-proxy-services '(("http" . "localhost:4444")))
-
-
 
 ;;;; ==== FULLSCREEN ====
 (toggle-frame-fullscreen)

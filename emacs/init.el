@@ -47,7 +47,7 @@
 ;(define-key global-map (kbd "C-v") 'scroll-down-half-page)
 ;(define-key global-map (kbd "M-v") 'scroll-up-half-page)
 
-(Tool-bar-mode -1)
+(tool-bar-mode -1)
 (menu-bar-mode -1)
 
 

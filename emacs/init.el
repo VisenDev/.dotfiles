@@ -4,9 +4,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-buffer-menu t)
+ '(inhibit-startup-screen t)
  '(package-native-compile t)
  '(package-selected-packages '(evil sly))
  '(ring-bell-function #'ignore)
+ '(scroll-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
  '(visible-bell nil))
 (custom-set-faces
@@ -16,7 +19,15 @@
  ;; If there is more than one, they won't work right.
  )
 
+;(setq completion-styles '(initials partial-completion flex)) ; > Emacs 27.1
+;(setq completion-cycle-threshold 10)
 
+
+;;;; ==== DISABLE SCROLL BAR ====
+;(setq scroll-bar-mode nil)
+
+
+;;;; ==== FUNCTION TO REMOVE BUFFERS ====
 (defun kill-all-buffers ()
   (interactive)
   (mapcar #'kill-buffer (buffer-list))

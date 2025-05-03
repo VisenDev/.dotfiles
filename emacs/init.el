@@ -16,6 +16,33 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== Better Scroll ====
+(defun scroll-down-half-page ()
+  "scroll down half a page while keeping the cursor centered"
+  (let ((ln (line-number-at-pos (point)))
+    (lmax (line-number-at-pos (point-max))))
+    (cond ((= ln 1) (move-to-window-line nil))
+      ((= ln lmax) (recenter (window-end)))
+      (t (progn
+           (move-to-window-line -1)
+           (recenter))))))
+
+(defun scroll-up-half-page ()
+  "scroll up half a page while keeping the cursor centered"
+  (let ((ln (line-number-at-pos (point)))
+    (lmax (line-number-at-pos (point-max))))
+    (cond ((= ln 1) nil)
+      ((= ln lmax) (move-to-window-line nil))
+      (t (progn
+           (move-to-window-line 0)
+           (recenter))))))
+
+;(define-key global-map (kbd "C-v") 'scroll-down-half-page)
+;(define-key global-map (kbd "M-v") 'scroll-up-half-page)
+
+(Tool-bar-mode -1)
+(menu-bar-mode -1)
+
 
 (defun kill-all-buffers ()
   (interactive)

@@ -19,8 +19,9 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;;; ==== SHOW COLUMN NUMBER ====
-(column-number-mode 1)
+;;;; ==== IDO MODE ====
+(ido-mode)
+(ido-everywhere)
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
@@ -48,14 +49,14 @@
 ;;;; ==== SHOW 80 COLUMN LINE ====
 (display-fill-column-indicator-mode 1)
 
-
 ;;;; ==== DISABLE TOP BARS ====
 (menu-bar-mode -1)
-
 
 ;;;; ==== DISABLE SCROLL BAR ====
 (setq scroll-bar-mode nil)
 
+;;;; ==== LINE NUMBERS ====
+(global-display-line-numbers-mode)
 
 ;;;; ==== FUNCTION TO REMOVE BUFFERS ====
 (defun kill-all-buffers ()

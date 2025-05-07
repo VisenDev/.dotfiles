@@ -19,40 +19,42 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== SHOW COLUMN NUMBER ====
+(column-number-mode 1)
 
-;(setq completion-styles '(initials partial-completion flex)) ; > Emacs 27.1
-;(setq completion-cycle-threshold 10)
+;;;; ==== C CODING STYLE ====
+(c-add-style "1tbs"
+             '("c"
+               (c-hanging-braces-alist
+		(defun-open after)
+		(class-open after)
+		(inline-open after)
+		(block-close . c-snug-do-while)
+		(statement-cont)
+		(substatement-open after)
+		(brace-list-open)
+		(brace-entry-open)
+		(extern-lang-open after)
+		(namespace-open after)
+		(module-open after)
+		(composition-open after)
+		(inexpr-class-open after)
+		(inexpr-class-close before)
+		(arglist-cont-nonempty))
+               (c-offsets-alist
+		(access-label . -))))
+(setq c-default-style "1tbs")
+ 
+;;;; ==== SHOW 80 COLUMN LINE ====
+(display-fill-column-indicator-mode 1)
 
-;;;; ==== Better Scroll ====
-(defun scroll-down-half-page ()
-  "scroll down half a page while keeping the cursor centered"
-  (let ((ln (line-number-at-pos (point)))
-    (lmax (line-number-at-pos (point-max))))
-    (cond ((= ln 1) (move-to-window-line nil))
-      ((= ln lmax) (recenter (window-end)))
-      (t (progn
-           (move-to-window-line -1)
-           (recenter))))))
 
-(defun scroll-up-half-page ()
-  "scroll up half a page while keeping the cursor centered"
-  (let ((ln (line-number-at-pos (point)))
-    (lmax (line-number-at-pos (point-max))))
-    (cond ((= ln 1) nil)
-      ((= ln lmax) (move-to-window-line nil))
-      (t (progn
-           (move-to-window-line 0)
-           (recenter))))))
-
-;(define-key global-map (kbd "C-v") 'scroll-down-half-page)
-;(define-key global-map (kbd "M-v") 'scroll-up-half-page)
-
-(tool-bar-mode -1)
+;;;; ==== DISABLE TOP BARS ====
 (menu-bar-mode -1)
 
 
 ;;;; ==== DISABLE SCROLL BAR ====
-;(setq scroll-bar-mode nil)
+(setq scroll-bar-mode nil)
 
 
 ;;;; ==== FUNCTION TO REMOVE BUFFERS ====

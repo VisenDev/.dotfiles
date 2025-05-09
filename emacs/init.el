@@ -5,8 +5,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
-     default))
+   '("6dbb88c9f23bad08cd4d52182100a1f899527c39ffdc8dc58d05cc558ce62e5e"
+     "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
  '(package-native-compile t)
@@ -30,7 +30,25 @@
 
 ;;;; ==== BETTER SCROLL ====
 (setq scroll-preserve-screen-position 'always)
+(setq fast-but-imprecise-scrolling t)
+(setq scroll-error-top-bottom t)
+(setq scroll-conservatively 101)
+(setq scroll-margin 20)
 
+;;;; ==== DISABLE LINE WRAP ====
+(setq-default truncate-lines t)
+
+;;;; ==== SPACES INSTEAD OF TABS ====
+(setq-default indent-tabs-mode nil
+              tab-width 4)
+
+;;;; ==== ALLOW TAB AUTOCOMPLETE ====
+(setq-default tab-always-indent nil)
+
+
+;;;; ==== SHOW COLUMN 80 LIMIT ====
+(setq-default fill-column 80)
+(global-display-fill-column-indicator-mode 1)
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
@@ -54,10 +72,10 @@
                (c-offsets-alist
 		(access-label . -))))
 (setq c-default-style "1tbs")
- 
-;;;; ==== SHOW 80 COLUMN LINE ====
-(display-fill-column-indicator-mode 1)
 
+;;;; ==== REMEMBER RECENT FILES ====
+(recentf-mode)
+ 
 ;;;; ==== DISABLE TOP BARS ====
 (tool-bar-mode -1)
 
@@ -66,6 +84,9 @@
 
 ;;;; ==== LINE NUMBERS ====
 (global-display-line-numbers-mode)
+
+;;;; ==== FASTER STARTUP ====
+(setq frame-resize-pixelwise t)
 
 ;;;; ==== FUNCTION TO REMOVE BUFFERS ====
 (defun kill-all-buffers ()

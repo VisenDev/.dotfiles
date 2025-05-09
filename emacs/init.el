@@ -26,7 +26,11 @@
 (which-key-mode)
 
 ;;;; ==== IDO MODE ====
-(icomplete-vertical-mode);
+(fido-mode)
+
+;;;; ==== BETTER SCROLL ====
+(setq scroll-preserve-screen-position 'always)
+
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
@@ -55,7 +59,7 @@
 (display-fill-column-indicator-mode 1)
 
 ;;;; ==== DISABLE TOP BARS ====
-(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;;;; ==== DISABLE SCROLL BAR ====
 (setq scroll-bar-mode nil)
@@ -146,4 +150,6 @@
 ;;;; ==== AUTOSTART ESHELL ====
 (eshell)
 
+;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

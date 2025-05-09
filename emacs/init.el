@@ -4,10 +4,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
+     default))
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
  '(package-native-compile t)
- '(package-selected-packages '(evil sly))
+ '(package-selected-packages '(evil gruber-darker-theme sly))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -19,13 +22,15 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== PARTIAL KEY CHORD ====
+(which-key-mode)
+
 ;;;; ==== IDO MODE ====
-(ido-mode)
-(ido-everywhere)
+(icomplete-vertical-mode);
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
-             '("c"
+             '("java"
                (c-hanging-braces-alist
 		(defun-open after)
 		(class-open after)
@@ -108,9 +113,10 @@
 (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
 ;
 ;;;; ==== THEME ====
+(load-theme 'gruber-darker)
 ;(load-theme 'darkmine)
 ;(load-theme 'wheatgrass)
-(load-theme 'leuven-dark)
+;(load-theme 'leuven-dark)
 ;(load-theme 'tango)
 
 ;;;; ==== EVIL MODE ====
@@ -140,3 +146,4 @@
 ;;;; ==== AUTOSTART ESHELL ====
 (eshell)
 
+(put 'upcase-region 'disabled nil)

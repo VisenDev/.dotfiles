@@ -1,5 +1,11 @@
 local vim = vim
 
+-- Disable bottom bar
+vim.opt.laststatus = 0
+vim.opt.ruler = false
+vim.opt.showcmd = false
+vim.opt.showmode = false
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 

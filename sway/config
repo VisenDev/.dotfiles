@@ -37,7 +37,7 @@ hide_edge_borders --i3 both
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-#output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /home/robertb/Pictures/batdog/betrayed.png 
 #
 # Example configuration:
 #
@@ -125,9 +125,9 @@ hide_edge_borders --i3 both
 # Workspaces:
 #
     bindsym $mod+Tab workspace next
-    bindsym $mod+Shift+Tab workspace previous
+    bindsym $mod+Shift+Tab workspace prev
     bindsym Alt+Tab workspace next
-    bindsym Alt+Shift+Tab workspace previous
+    bindsym Alt+Shift+Tab workspace prev
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -240,7 +240,7 @@ bar {
     # The default just shows the current date and time.
     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
     font 15
-    mode hide
+    # mode hide
 
     colors {
         statusline #ffffff

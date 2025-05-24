@@ -10,6 +10,8 @@ exec swayidle -w \
 #
 # Read `man 5 sway` for a complete reference.
 
+input "type:keyboard" xkb_options caps:escape
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -22,14 +24,15 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu fuzzel
 
 
+workspace_layout stacking
 #smart_borders on
 #gaps inner 5
 #gaps outer 3
 default_border pixel 0
-# hide_edge_borders --i3 both
+hide_edge_borders --i3 both
 
 ### Output configuration
 #
@@ -121,6 +124,10 @@ default_border pixel 0
 #
 # Workspaces:
 #
+    bindsym $mod+Tab workspace next
+    bindsym $mod+Shift+Tab workspace previous
+    bindsym Alt+Tab workspace next
+    bindsym Alt+Shift+Tab workspace previous
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -227,16 +234,19 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom 
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    font 15
+    mode hide
 
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #323232ff #323232ff #5c5c5cff
+        active_workspace #121212ff #121212ff #5c5c5cff
     }
 }
 

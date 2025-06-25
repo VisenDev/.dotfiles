@@ -24,7 +24,7 @@ input {
     // Next sections include libinput settings.
     // Omitting settings disables them, or leaves them at their default values.
     touchpad {
-        // off
+        off
         tap 
         // dwt
         // dwtp
@@ -373,8 +373,8 @@ binds {
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
-    Mod+Tab     { focus-column-left; }
-    Mod+Shift+Tab     { focus-column-right; }
+    Mod+Tab     { focus-column-right-or-first; }
+    Mod+Shift+Tab     { focus-column-left-or-last; }
 
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }

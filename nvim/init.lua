@@ -63,15 +63,21 @@ vim.cmd("colorscheme habamax")
 vim.opt.formatoptions:remove("cro")
 
 -- Disable brackets inside parentheses showing an error in C
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "c",
-  command = "highlight clear Error"
-})
+-----vim.api.nvim_create_autocmd("FileType", {
+-----  pattern = "c",
+-----  command = "highlight clear Error"
+-----})
 
 -- Syntax for *.cake files
 vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*cake",
   command = "set syntax=lisp"
+})
+
+
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*.blok",
+  command = "set syntax=blok"
 })
 
 -- Set tab width for Lisp files

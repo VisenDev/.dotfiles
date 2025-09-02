@@ -9,6 +9,7 @@ vim.opt.showmode = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+
 vim.cmd("let g:slime_target = \"wezterm\"")
 
 -- Enable syntax highlighting
@@ -254,3 +255,10 @@ vim.api.nvim_create_autocmd('FileType', {
         })
     end,
 })
+
+
+-- Fix red highlighting of brackets in C
+vim.cmd("highlight clear cErrInParen");
+vim.cmd("highlight cErrInParen cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE");
+vim.cmd("highlight clear cParenError");
+vim.cmd("highlight cParenError cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE");

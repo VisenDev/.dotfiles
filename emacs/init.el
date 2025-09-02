@@ -34,8 +34,8 @@
     (switch-to-buffer "*eshell*")
     (delete-other-windows)))
 
-(define-key (current-global-map) (kbd "C-c C-c") 'goto-eshell)
-(define-key (current-global-map) (kbd "C-c c")   'goto-eshell)
+(define-key (current-global-map) (kbd "C-c =") 'goto-eshell)
+(define-key (current-global-map) (kbd "C-c C-=") 'goto-eshell)
 
 ;;;; ==== QUICK BUFSWAP ====
 (define-key (current-global-map) (kbd "C-=") 'mode-line-other-buffer)

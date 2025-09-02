@@ -38,10 +38,7 @@
 (define-key (current-global-map) (kbd "C-c c")   'goto-eshell)
 
 ;;;; ==== QUICK BUFSWAP ====
-(defun quick-bufswap ()
-  (interactive)
-  (switch-to-buffer nil))
-(define-key (current-global-map) (kbd "C-=") 'quick-bufswap)
+(define-key (current-global-map) (kbd "C-=") 'mode-line-other-buffer)
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)

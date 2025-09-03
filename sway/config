@@ -1,11 +1,16 @@
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
-            resume 'swaymsg "output * dpms on"' \
+         timeout 600 'systemctl hibernate' \
          before-sleep 'swaylock -f -c 000000'
+
 
 exec waybar
 exec foot --server
+
+         #timeout 600 'swaymsg "output * dpms off"' \
+         #   resume 'swaymsg "output * dpms on"' \
+
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.

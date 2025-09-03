@@ -38,8 +38,10 @@ startx
 dwm
 
 # Screen Lock
-- slock : enabled by /etc/systemd/system/slock.service
+- for dwm -> slock : enabled by /etc/systemd/system/slock.service
+- for niri -> swaylock -> enabled by ~/.profile
 
 # Lid Close Behavior
 controlled by /etc/systemd/logind.conf
 
+# 

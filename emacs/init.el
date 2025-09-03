@@ -22,6 +22,24 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== SPECIAL ESHELL BINDING ====
+(defun goto-eshell ()
+  (interactive)
+  (let ((eshell-exists nil))
+    (dolist (buf (buffer-list))
+      (when (string-equal "*eshell*" (buffer-name buf))
+        (setq eshell-exists t)))
+    (unless eshell-exists
+      (eshell))
+    (switch-to-buffer "*eshell*")
+    (delete-other-windows)))
+
+(define-key (current-global-map) (kbd "C-c =") 'goto-eshell)
+(define-key (current-global-map) (kbd "C-c C-=") 'goto-eshell)
+
+;;;; ==== QUICK BUFSWAP ====
+(define-key (current-global-map) (kbd "C-=") 'mode-line-other-buffer)
+
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)
 
@@ -44,8 +62,6 @@
 
 ;;;; ==== ALLOW TAB AUTOCOMPLETE ====
 (setq tab-always-indent 'complete)
-
-
 
 ;;;; ==== SHOW COLUMN 80 LIMIT ====
 (setq-default fill-column 80)

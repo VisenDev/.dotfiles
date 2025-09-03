@@ -9,6 +9,7 @@ vim.opt.showmode = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+
 vim.cmd("let g:slime_target = \"wezterm\"")
 
 -- Enable syntax highlighting
@@ -69,15 +70,21 @@ vim.cmd("colorscheme habamax")
 vim.opt.formatoptions:remove("cro")
 
 -- Disable brackets inside parentheses showing an error in C
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "c",
-  command = "highlight clear Error"
-})
+-----vim.api.nvim_create_autocmd("FileType", {
+-----  pattern = "c",
+-----  command = "highlight clear Error"
+-----})
 
 -- Syntax for *.cake files
 vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*cake",
   command = "set syntax=lisp"
+})
+
+
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*.blok",
+  command = "set syntax=blok"
 })
 
 -- Set tab width for Lisp files
@@ -250,7 +257,15 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 
+
 vim.api.nvim_create_autocmd('BufRead', {
     pattern = '*.blok',
     command = 'set syntax=blok'
 })
+
+-- Fix red highlighting of brackets in C
+vim.cmd("highlight clear cErrInParen");
+vim.cmd("highlight cErrInParen cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE");
+vim.cmd("highlight clear cParenError");
+vim.cmd("highlight cParenError cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE");
+

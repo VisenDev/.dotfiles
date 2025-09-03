@@ -248,3 +248,9 @@ vim.api.nvim_create_autocmd('FileType', {
         })
     end,
 })
+
+
+vim.api.nvim_create_autocmd('BufRead', {
+    pattern = '*.blok',
+    command = 'set syntax=blok'
+})

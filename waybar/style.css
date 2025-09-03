@@ -1,40 +1,118 @@
 * {
-    font-family: Courier;
-    font-size: 26px;
-    padding: 0px;
-    margin: 0px;
     border: none;
-    margin-bottom: 0px;
+    border-radius: 0;
+    font-family: Iosevka, Source Code Pro, Noto Sans, sans-serif;
+    font-size: 16px;
+    min-height: 0;
 }
 
-#waybar {
-    background-color: #333333;
+window#waybar {
+    background: rgba(43, 48, 59, 0.8);
+    border-bottom: 3px solid rgba(100, 114, 125, 1);
     color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
+
+#window {
+    font-weight: bold;
+    font-family: "Noto Sans";
+}
+/*
+#workspaces {
+    padding: 0 5px;
+}
+*/
+
+#workspaces button {
+    padding: 0 5px;
+    font-size: 24px;
+    background: transparent;
+    color: white;
+    border-top: 4px solid transparent;
+}
+
+#workspaces button.focused {
+    color: rgb(246, 201, 169);
+    border-top: 4px solid rgb(246, 201, 169);
+}
+
+#workspaces button.urgent {
+    color: rgb(175, 95, 95);
+    border-top: 4px solid rgb(175, 95, 95);
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #custom-keyboard-layout, #custom-weather, #tray, #mode {
+    padding: 0 3px;
+    margin: 0 2px;
+}
+
+#custom-keyboard-layout {
+    color: #5FAFAF
+}
+
 #clock {
-    color: #ffffff;
+    font-weight: bold;
 }
+
 #battery {
-    color: #ffffff;
 }
+
+#battery icon {
+    color: red;
+}
+
+#battery.charging {
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 #cpu {
-    color: #11ee11;
-}
-#memory
-{
-    color: #ee1111;
+    color: #8FAFD7
 }
 
-#workspaces * {
-    color: #ffffff;
-    margin: 0px;
-    padding: 0px;
-/*    background-color: #ffffff;*/
+#memory {
+    color: #8FAFD7
 }
 
-#workspaces button.active {
-    color: #ee00ee;
-    border-radius: 0px;
-    background-color: #000011;
+#network {
+    color: #87AF87
 }
 
+#network.disconnected {
+    background: #f53c3c;
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+}
+
+#custom-spotify {
+    background: rgba(102, 204, 153, 0.7);
+    color: #202020;
+}
+
+#tray {
+    background-color: #0A1E2B;
+}

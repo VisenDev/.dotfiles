@@ -43,7 +43,8 @@
               tab-width 4)
 
 ;;;; ==== ALLOW TAB AUTOCOMPLETE ====
-(setq-default tab-always-indent nil)
+(setq tab-always-indent 'complete)
+
 
 
 ;;;; ==== SHOW COLUMN 80 LIMIT ====

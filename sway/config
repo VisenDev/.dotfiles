@@ -4,6 +4,8 @@ exec swayidle -w \
             resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
+exec waybar
+exec foot --server
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -233,21 +235,21 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position bottom 
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-    font 15
-    # mode hide
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #323232ff #323232ff #5c5c5cff
-        active_workspace #121212ff #121212ff #5c5c5cff
-    }
-}
-
-include @sysconfdir@/sway/config.d/*
+# bar {
+#     position bottom 
+# 
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+#     font 15
+#     # mode hide
+# 
+#     colors {
+#         statusline #ffffff
+#         background #323232
+#         inactive_workspace #323232ff #323232ff #5c5c5cff
+#         active_workspace #121212ff #121212ff #5c5c5cff
+#     }
+# }
+# 
+# include @sysconfdir@/sway/config.d/*

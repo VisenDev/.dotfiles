@@ -1,34 +1,138 @@
 {
-    "layer": "top",
-    "position": "top",
-    "modules-right": [ "disk", "memory", "cpu", "battery", "clock"],
-    "clock": {
-        "format": " {:%H:%M} ",
-        "tooltip": true,
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar at the bottom of your screen
+    "height": 36, // Waybar height
+    // "width": 1366, // Waybar width
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-center": ["custom/weather", "clock"],
+    "modules-right": [
+        "pulseaudio",
+        "custom/keyboard-layout",
+        "network",
+        "battery",
+        "battery#bat1",
+        "temperature",
+        "cpu",
+        "memory",
+        "tray"
+    ],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1: Web": "",
+            "2: Dev": "",
+            "3: Chat": "",
+            "4: Work": "",
+            "6: Docs": "",
+            "9: Pass": "",
+            "10: Media": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     },
-    "battery": {
-        "format": " Bat: {}% ",
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+        "critical-threshold": 90,
+        "interval": 5,
+        "format": "{icon} {temperatureC}°",
+        "format-icons": [
+            "", // Icon: temperature-empty
+            "", // Icon: temperature-quarter
+            "", // Icon: temperature-half
+            "", // Icon: temperature-three-quarters
+            ""  // Icon: temperature-full
+        ]
+    },
+    "custom/keyboard-layout": {
+      "exec": "~/.config/waybar/layout.sh",
+      // Interval set only as a fallback, as the value is updated by signal
+      //"interval": 5,
+      "format": " {}", // Icon: keyboard
+      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+      "signal": 1, // SIGHUP
+      "tooltip": false
+    },
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "~/.config/waybar/waybar-wttr.py",
+        "return-type": "json"
+    },
+    "clock": {
+        "format": "{:%A %d %B %H:%M}",
+        "format-alt": "{:%H:%M}"
     },
     "cpu": {
-        "format": " Load: {} ",
-        "interval": 5,
+        "format": "{usage:2}% "
     },
     "memory": {
-        "format": " Mem: {}% ",
-        "interval": 5,
+        "format": "{}% "
     },
-    "disk": {
-        "format": " Disk Free: {}% ",
-        "interval": 30,
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
     },
-    "modules-left": ["hyprland/workspaces"],
-    "hyprland/workspaces": {
-        "format": "{id}",
-        "active-only": false,
-        "persistent-workspaces": { "*": 9 },
-        "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    "battery#bat1": {
+        "bat": "BAT1",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected ⚠"
+    },
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "M",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/spotify": {
+        "format": " {}",
+        "max-length": 40,
+        "interval": 30, // Remove this if your script is endless and write in loop
+        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
+        "exec-if": "pgrep spotify"
     }
 }
 
+// vim: set ft=css :

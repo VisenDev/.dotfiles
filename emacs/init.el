@@ -34,11 +34,27 @@
     (switch-to-buffer "*eshell*")
     (delete-other-windows)))
 
-(define-key (current-global-map) (kbd "C-c =") 'goto-eshell)
-(define-key (current-global-map) (kbd "C-c C-=") 'goto-eshell)
+(define-key (current-global-map) (kbd "C-c k") 'goto-eshell)
+(define-key (current-global-map) (kbd "C-c C-k") 'goto-eshell)
+
+;;;; ==== QUICK RETURN TO FILE ====
+(defun goto-last-file-buffer ()
+  (interactive)
+  (let ((last-file nil))
+    (catch 'break 
+      (dolist (buf (buffer-list))
+        (when (buffer-file-name buf)
+          (switch-to-buffer buf)
+          (throw 'break (buffer-file-name buf))
+          )
+      ))))
+
+(define-key (current-global-map) (kbd "C-c j") 'goto-last-file-buffer)
+(define-key (current-global-map) (kbd "C-c C-j") 'goto-last-file-buffer)
 
 ;;;; ==== QUICK BUFSWAP ====
-(define-key (current-global-map) (kbd "C-=") 'mode-line-other-buffer)
+(define-key (current-global-map) (kbd "C-c n") 'mode-line-other-buffer)
+(define-key (current-global-map) (kbd "C-c C-n") 'mode-line-other-buffer)
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)

@@ -10,7 +10,7 @@
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
  '(package-native-compile t)
- '(package-selected-packages '(evil gruber-darker-theme sly))
+ '(package-selected-packages '(evil gruber-darker-theme sly zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -36,6 +36,8 @@
 
 (define-key (current-global-map) (kbd "C-c k") 'goto-eshell)
 (define-key (current-global-map) (kbd "C-c C-k") 'goto-eshell)
+
+;;;; ==== PATH ====
 
 ;;;; ==== QUICK RETURN TO FILE ====
 (defun goto-last-file-buffer ()
@@ -207,3 +209,5 @@
 ;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(load "~/.dotfiles/emacs/odin-mode.el")

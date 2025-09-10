@@ -22,6 +22,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== ADD PATH ====
+(setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))
+
 ;;;; ==== SPECIAL ESHELL BINDING ====
 (defun goto-eshell ()
   (interactive)
@@ -204,7 +207,12 @@
 (set-face-attribute 'default nil :height 170)
 
 ;;;; ==== AUTOSTART ESHELL ====
-(eshell)
+(let ((eshell-exists nil))
+  (dolist (buf (buffer-list))
+    (when (string-equal "*eshell*" (buffer-name buf))
+      (setq eshell-exists t)))
+  (unless eshell-exists
+    (eshell)))
 
 ;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)

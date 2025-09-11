@@ -219,3 +219,10 @@
 (put 'downcase-region 'disabled nil)
 
 (load "~/.dotfiles/emacs/odin-mode.el")
+
+;;;; ==== MELPA ====
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;;;; ==== C3 SYNTAX ====
+(add-to-list 'auto-mode-alist '("\\.c3\\'" . 'c-mode))

@@ -23,6 +23,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== ADD PATH ====
+(setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))
+
 ;;;; ==== SPECIAL ESHELL BINDING ====
 (defun goto-eshell ()
   (interactive)
@@ -205,17 +208,28 @@
 (set-face-attribute 'default nil :height 170)
 
 ;;;; ==== AUTOSTART ESHELL ====
-(eshell)
+(let ((eshell-exists nil))
+  (dolist (buf (buffer-list))
+    (when (string-equal "*eshell*" (buffer-name buf))
+      (setq eshell-exists t)))
+  (unless eshell-exists
+    (eshell)))
 
 ;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-
 ;;;; ==== ODIN ====
 (load "~/.dotfiles/emacs/odin-mode.el")
-
 
 ;;;; ==== RECOMPILE ====
 (define-key global-map (kbd "C-c C-l") 'recompile)
 (define-key global-map (kbd "C-c l") 'recompile)
+
+;;;; ==== MELPA ====
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;;;; ==== C3 SYNTAX ====
+(add-to-list 'auto-mode-alist '("\\.c3\\'" . 'c-mode))
+

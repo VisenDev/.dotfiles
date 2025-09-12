@@ -23,6 +23,10 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== SPLIT WINDOWS BETTER ====
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+
 ;;;; ==== ADD PATH ====
 (setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))
 
@@ -231,5 +235,5 @@
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 ;;;; ==== C3 SYNTAX ====
-(add-to-list 'auto-mode-alist '("\\.c3\\'" . 'c-mode))
+(add-to-list 'auto-mode-alist '("\\.c3\\'" . c-mode))
 

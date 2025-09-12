@@ -23,9 +23,17 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; ==== FUN COMMANDS TO REMEMBER ====
+;; spook
+;; xref
+;; time-mode
+
 ;;;; ==== SPLIT WINDOWS BETTER ====
 (setq split-height-threshold nil)
-(setq split-width-threshold 0)
+(setq split-width-threshold 80)
+
+;;;; ==== TIME ====
+(display-time-mode)
 
 ;;;; ==== ADD PATH ====
 (setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))

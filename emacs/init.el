@@ -11,7 +11,7 @@
  '(inhibit-startup-screen t)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode evil gruber-darker-theme meson-mode sly zig-mode))
+   '(cmake-mode evil gruber-darker-theme meson-mode mines sly zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -27,10 +27,11 @@
 ;; spook
 ;; xref
 ;; time-mode
+;; artist-mode
 
 ;;;; ==== SPLIT WINDOWS BETTER ====
-(setq split-height-threshold nil)
-(setq split-width-threshold 80)
+(setq split-height-threshold 80)
+(setq split-width-threshold 40)
 
 ;;;; ==== TIME ====
 (display-time-mode)
@@ -51,9 +52,6 @@
     (delete-other-windows)))
 
 (define-key (current-global-map) (kbd "C-c k") 'goto-eshell)
-(define-key (current-global-map) (kbd "C-c C-k") 'goto-eshell)
-
-;;;; ==== PATH ====
 
 ;;;; ==== QUICK RETURN TO FILE ====
 (defun goto-last-file-buffer ()
@@ -68,11 +66,9 @@
       ))))
 
 (define-key (current-global-map) (kbd "C-c j") 'goto-last-file-buffer)
-(define-key (current-global-map) (kbd "C-c C-j") 'goto-last-file-buffer)
 
 ;;;; ==== QUICK BUFSWAP ====
 (define-key (current-global-map) (kbd "C-c n") 'mode-line-other-buffer)
-(define-key (current-global-map) (kbd "C-c C-n") 'mode-line-other-buffer)
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)
@@ -103,7 +99,7 @@
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
-             '("java"
+             '("c"
                (c-hanging-braces-alist
 		(defun-open after)
 		(class-open after)
@@ -123,6 +119,13 @@
                (c-offsets-alist
 		(access-label . -))))
 (setq c-default-style "1tbs")
+
+(defun my-c-mode-style ()
+  (c-set-offset 'arglist-intro '+)      ;; indent arguments relative to "("
+  (c-set-offset 'arglist-cont-nonempty 'c-lineup-arglist) ;; keep hanging
+  (c-set-offset 'arglist-close 0))      ;; align closing ")" with call
+
+(add-hook 'c-mode-common-hook #'my-c-mode-style)
 
 ;;;; ==== REMEMBER RECENT FILES ====
 (recentf-mode)
@@ -205,7 +208,6 @@
   (define-key evil-normal-state-map (kbd "SPC") (kbd  "C-x b"))
   (evil-mode 1)			    
 )
-
 
 ;;;; ==== MAKE LIST BUFFERS TAKE FOCUS ====
 (define-key global-map [remap list-buffers] 'buffer-menu-other-window)

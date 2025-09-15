@@ -29,10 +29,6 @@
 ;; time-mode
 ;; artist-mode
 
-;;;; ==== SPLIT WINDOWS BETTER ====
-(setq split-height-threshold 80)
-(setq split-width-threshold 40)
-
 ;;;; ==== TIME ====
 (display-time-mode)
 
@@ -247,3 +243,5 @@
 ;;;; ==== C3 SYNTAX ====
 (add-to-list 'auto-mode-alist '("\\.c3\\'" . c-mode))
 
+;;;; ==== TCL CONFIG ====
+(setq-default tcl-application "tclsh")

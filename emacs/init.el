@@ -29,6 +29,34 @@
 ;; time-mode
 ;; artist-mode
 
+;; make hippie-expand use dabbrev first
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+
+(defun indent-or-hippie-expand ()
+  "Indent. If point didn't move, try `hippie-expand`."
+  (interactive)
+  (let ((pt (point)))
+    (indent-for-tab-command)
+    (when (= pt (point))
+      (hippie-expand nil))))
+
+;; Use in programming and text buffers
+(add-hook 'prog-mode-hook
+          (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
+(add-hook 'text-mode-hook
+          (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
+
+
 ;;;; ==== TIME ====
 (display-time-mode)
 

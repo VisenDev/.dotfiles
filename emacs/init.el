@@ -4,11 +4,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bubbles-game-theme 'difficult)
+ '(bubbles-graphics-theme 'circles)
  '(custom-safe-themes
    '("6dbb88c9f23bad08cd4d52182100a1f899527c39ffdc8dc58d05cc558ce62e5e"
      "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
+ '(next-screen-context-lines 20)
  '(package-native-compile t)
  '(package-selected-packages
    '(cmake-mode evil gruber-darker-theme meson-mode mines sly zig-mode))

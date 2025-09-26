@@ -11,7 +11,7 @@
      "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
- '(next-screen-context-lines 20)
+ '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
    '(cmake-mode evil gruber-darker-theme meson-mode mines sly zig-mode))
@@ -39,11 +39,12 @@
         try-expand-dabbrev-from-kill
         try-complete-file-name-partially
         try-complete-file-name
-        try-expand-all-abbrevs
-        try-expand-list
-        try-expand-line
-        try-complete-lisp-symbol-partially
-        try-complete-lisp-symbol))
+        ;;try-expand-all-abbrevs
+        ;;try-expand-list
+        ;;try-expand-line
+        ;;try-complete-lisp-symbol-partially
+        ;;try-complete-lisp-symbol
+        ))
 
 (defun indent-or-hippie-expand ()
   "Indent. If point didn't move, try `hippie-expand`."
@@ -95,7 +96,15 @@
 (define-key (current-global-map) (kbd "C-c j") 'goto-last-file-buffer)
 
 ;;;; ==== QUICK BUFSWAP ====
-(define-key (current-global-map) (kbd "C-c n") 'mode-line-other-buffer)
+(defun quick-bufswap ()
+  (interactive)
+  (mode-line-other-buffer)
+  (delete-other-windows)
+  )
+(define-key (current-global-map) (kbd "C-c n") 'quick-bufswap)
+
+;;;; ==== QUICK DELETE OTHER WINDOWS ====
+(define-key (current-global-map) (kbd "C-c o") 'delete-other-windows)
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)
@@ -108,7 +117,7 @@
 (setq fast-but-imprecise-scrolling t)
 (setq scroll-error-top-bottom t)
 (setq scroll-conservatively 101)
-(setq scroll-margin 20)
+(setq scroll-margin 10)
 
 ;;;; ==== DISABLE LINE WRAP ====
 (setq-default truncate-lines t)
@@ -122,11 +131,11 @@
 
 ;;;; ==== SHOW COLUMN 80 LIMIT ====
 (setq-default fill-column 80)
-(global-display-fill-column-indicator-mode 1)
+;(global-display-fill-column-indicator-mode 1)
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
-             '("c"
+             '("java"
                (c-hanging-braces-alist
 		(defun-open after)
 		(class-open after)
@@ -194,8 +203,8 @@
   )
 
 ;;;; ==== ALLOW EMACS TO FIND LIBGCCJIT FOR NATIVE PACKAGE COMP ====
-(setenv "LD_LIBRARY_PATH" "/usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/")
-(setenv "LIBRARY_PATH" "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib /usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/")
+;(setenv "LD_LIBRARY_PATH" "/usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/")
+;(setenv "LIBRARY_PATH" "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib /usr/local/Cellar/libgccjit/14.2.0_1/lib/gcc/current/")
 
 ;;;; ==== CHECK NATIVE COMP ====
 (defun check-native-comp ()
@@ -264,7 +273,6 @@
 (load "~/.dotfiles/emacs/odin-mode.el")
 
 ;;;; ==== RECOMPILE ====
-(define-key global-map (kbd "C-c C-l") 'recompile)
 (define-key global-map (kbd "C-c l") 'recompile)
 
 ;;;; ==== MELPA ====

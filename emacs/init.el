@@ -95,6 +95,12 @@
 
 (define-key (current-global-map) (kbd "C-c j") 'goto-last-file-buffer)
 
+;;;; ==== QUICK STRING REPLACE ====
+(define-key (current-global-map) (kbd "C-c s") 'replace-string)
+
+;;;; ==== QUICK ALIGN REGEXP ====
+(define-key (current-global-map) (kbd "C-c a") 'align-regexp)
+
 ;;;; ==== QUICK BUFSWAP ====
 (defun quick-bufswap ()
   (interactive)

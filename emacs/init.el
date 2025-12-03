@@ -14,7 +14,8 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode evil gruber-darker-theme meson-mode mines sly zig-mode))
+   '(cmake-mode evil gruber-darker-theme julia-mode meson-mode mines paredit sly
+                zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -31,6 +32,9 @@
 ;; xref
 ;; time-mode
 ;; artist-mode
+
+;; Auto-refresh dired on file change
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 ;; make hippie-expand use dabbrev first
 (setq hippie-expand-try-functions-list
@@ -260,7 +264,7 @@
 ;;;; ==== PUT BACKUP FILES IN SPECIAL DIRECTORIES ====
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))
 
-;;;; ==== ENSURE NEW WINDOWS ARE VERTICAL ====
+;;;; ==== SET FONT SIZE ====
 (set-face-attribute 'default nil :height 170)
 
 ;;;; ==== AUTOSTART ESHELL ====
@@ -278,8 +282,8 @@
 ;;;; ==== ODIN ====
 (load "~/.dotfiles/emacs/odin-mode.el")
 
-;;;; ==== RECOMPILE ====
-(define-key global-map (kbd "C-c l") 'recompile)
+;;;; ==== COMPILE ====
+(define-key global-map (kbd "C-c l") 'compile)
 
 ;;;; ==== MELPA ====
 (add-to-list 'package-archives
@@ -290,3 +294,6 @@
 
 ;;;; ==== TCL CONFIG ====
 (setq-default tcl-application "tclsh")
+
+;;;; ==== DISABLE AUTO INDENTATION CHANGE ====
+(electric-indent-mode -1)

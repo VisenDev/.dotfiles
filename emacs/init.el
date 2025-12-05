@@ -297,3 +297,6 @@
 
 ;;;; ==== DISABLE AUTO INDENTATION CHANGE ====
 (electric-indent-mode -1)
+
+;;;; ==== LITAC SYNTAX ====
+(add-to-list 'auto-mode-alist '("\\.lita\\'" . c-mode))

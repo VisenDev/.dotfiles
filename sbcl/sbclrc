@@ -17,7 +17,7 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
-(ql:quickload "linedit")
+;;(ql:quickload "linedit")
 
 
 

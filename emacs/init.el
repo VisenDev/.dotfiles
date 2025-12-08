@@ -14,7 +14,7 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode evil gruber-darker-theme meson-mode mines sly zig-mode))
+   '(cmake-mode evil gruber-darker-theme meson-mode mines paredit sly zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))

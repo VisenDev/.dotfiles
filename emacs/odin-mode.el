@@ -1,4 +1,4 @@
-;;; odin-mode.el --- A minor mode for odin
+;;; odin-mode.el --- A minor mode for odin  -*- lexical-binding: t; -*-
 
 ;; Author: Ethan Morgan
 ;; Keywords: odin, language, languages, mode

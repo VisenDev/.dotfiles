@@ -33,6 +33,7 @@
 ;; time-mode
 ;; artist-mode
 
+
 ;; Auto-refresh dired on file change
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
@@ -184,6 +185,7 @@
 
 ;;;; ==== LINE NUMBERS ====
 (global-display-line-numbers-mode)
+(column-number-mode)
 
 ;;;; ==== FASTER STARTUP ====
 (setq frame-resize-pixelwise t)
@@ -266,6 +268,9 @@
 
 ;;;; ==== SET FONT SIZE ====
 (set-face-attribute 'default nil :height 170)
+
+;;;; ==== SET DEFUALT FONT TO TERMINUS ====
+(set-frame-font "terminus")
 
 ;;;; ==== AUTOSTART ESHELL ====
 (let ((eshell-exists nil))

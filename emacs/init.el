@@ -18,7 +18,7 @@
  '(package-native-compile t)
  '(package-selected-packages
    '(cmake-mode evil go-mode gruber-darker-theme julia-mode meson-mode mines
-                paredit sly zig-mode))
+                paredit slime zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
@@ -37,6 +37,9 @@
 ;; time-mode
 ;; artist-mode
 
+
+(setq inferior-lisp-program "sbcl")
+(add-hook 'lisp-mode-hook 'paredit-mode)
 
 ;; Auto-refresh dired on file change
 (add-hook 'dired-mode-hook 'auto-revert-mode)
@@ -237,11 +240,11 @@
   (find-file "~/.dotfiles/emacs/init.el"))
 
 ;;;; ==== SLY ====
-(add-hook 'sly-mode-hook
-          (lambda ()
-            (unless (sly-connected-p)
-              (save-excursion (sly)))))
-(setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
+;; (add-hook 'sly-mode-hook
+;;           (lambda ()
+;;             (unless (sly-connected-p)
+;;               (save-excursion (sly)))))
+;; (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
 ;
 ;;;; ==== THEME ====
 (load-theme 'gruber-darker)

@@ -6,18 +6,22 @@
  ;; If there is more than one, they won't work right.
  '(bubbles-game-theme 'difficult)
  '(bubbles-graphics-theme 'circles)
+ '(column-number-mode t)
  '(custom-safe-themes
    '("6dbb88c9f23bad08cd4d52182100a1f899527c39ffdc8dc58d05cc558ce62e5e"
      "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
+ '(display-time-mode t)
+ '(global-display-line-numbers-mode t)
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode evil gruber-darker-theme julia-mode meson-mode mines paredit sly
-                zig-mode))
+   '(cmake-mode evil go-mode gruber-darker-theme julia-mode meson-mode mines
+                paredit sly zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
+ '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
  '(visible-bell nil))
 (custom-set-faces
@@ -25,7 +29,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight regular :height 173 :width normal)))))
 
 ;;;; ==== FUN COMMANDS TO REMEMBER ====
 ;; spook
@@ -267,10 +271,10 @@
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))
 
 ;;;; ==== SET FONT SIZE ====
-(set-face-attribute 'default nil :height 170)
+(set-face-attribute 'default nil :height 190)
 
 ;;;; ==== SET DEFUALT FONT TO TERMINUS ====
-(set-frame-font "terminus")
+;;(set-frame-font "terminus")
 
 ;;;; ==== AUTOSTART ESHELL ====
 (let ((eshell-exists nil))

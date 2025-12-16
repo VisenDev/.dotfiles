@@ -103,14 +103,14 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 
 -- Warn on column 80
-if vim.fn.exists("+colorcolumn") == 1 then
-  vim.opt.colorcolumn = "80"
-else
-  vim.api.nvim_create_autocmd("BufWinEnter", {
-    pattern = "*",
-    command = "let w:m2=matchadd('ErrorMsg', '\\%>80v.\\+', -1)"
-  })
-end
+--if vim.fn.exists("+colorcolumn") == 1 then
+--  vim.opt.colorcolumn = "80"
+--else
+--  vim.api.nvim_create_autocmd("BufWinEnter", {
+--    pattern = "*",
+--    command = "let w:m2=matchadd('ErrorMsg', '\\%>80v.\\+', -1)"
+--  })
+--end
 
 vim.api.nvim_set_keymap('n', '<Space>', ':bn<Cr>', {noremap=true})
 vim.api.nvim_set_keymap('n', '<S-Space>', ':bp<Cr>', {noremap=true})

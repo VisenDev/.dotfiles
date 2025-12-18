@@ -17,8 +17,8 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode company evil go-mode gruber-darker-theme julia-mode meson-mode
-                mines paredit slime zig-mode))
+   '(cmake-mode company evil go-mode gruber-darker-theme julia-mode lispy
+                meson-mode mines multiple-cursors sly zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
@@ -41,12 +41,12 @@
 ;;;; ==== BETTER LISP INTERACTIONS ====
 (add-hook 'after-init-hook 'global-company-mode)
 
-(setq inferior-lisp-program "sbcl")
-(setq slime-load-failed-fasl :never)
+;; (setq inferior-lisp-program "sbcl")
+;; (setq slime-load-failed-fasl :never)
 
-(add-hook 'lisp-mode-hook 'paredit-mode)
+(add-hook 'lisp-mode-hook 'lispy-mode)
 (add-hook 'lisp-mode-hook 'electric-indent-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'lispy-mode)
 (add-hook 'emacs-lisp-mode-hook 'electric-indent-mode)
 
 
@@ -219,12 +219,12 @@
   (find-file "~/.dotfiles/emacs/init.el"))
 
 ;;;; ==== SLY ====
-;; (add-hook 'sly-mode-hook
-;;           (lambda ()
-;;             (unless (sly-connected-p)
-;;               (save-excursion (sly)))))
-;; (setq inferior-lisp-program "sbcl --dynamic-space-size 8gb")
-;
+(add-hook 'sly-mode-hook
+          (lambda ()
+            (unless (sly-connected-p)
+              (save-excursion (sly)))))
+(setq inferior-lisp-program "sbcl")
+
 ;;;; ==== THEME ====
 (load-theme 'gruber-darker)
 ;(load-theme 'darkmine)

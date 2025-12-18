@@ -17,8 +17,8 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode evil go-mode gruber-darker-theme julia-mode meson-mode mines
-                paredit slime zig-mode))
+   '(cmake-mode company evil go-mode gruber-darker-theme julia-mode meson-mode
+                mines paredit slime zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
@@ -38,39 +38,48 @@
 ;; artist-mode
 
 
+;;;; ==== BETTER LISP INTERACTIONS ====
+(add-hook 'after-init-hook 'global-company-mode)
+
 (setq inferior-lisp-program "sbcl")
+(setq slime-load-failed-fasl :never)
+
 (add-hook 'lisp-mode-hook 'paredit-mode)
+(add-hook 'lisp-mode-hook 'electric-indent-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'electric-indent-mode)
+
 
 ;; Auto-refresh dired on file change
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
-;; make hippie-expand use dabbrev first
-(setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        try-expand-dabbrev-from-kill
-        try-complete-file-name-partially
-        try-complete-file-name
-        ;;try-expand-all-abbrevs
-        ;;try-expand-list
-        ;;try-expand-line
-        ;;try-complete-lisp-symbol-partially
-        ;;try-complete-lisp-symbol
-        ))
+;; ;; make hippie-expand use dabbrev first
+;; (setq hippie-expand-try-functions-list
+;;       '(try-expand-dabbrev
+;;         try-expand-dabbrev-all-buffers
+;;         try-expand-dabbrev-from-kill
+;;         try-complete-file-name-partially
+;;         try-complete-file-name
+;;         ;;try-expand-all-abbrevs
+;;         ;;try-expand-list
+;;         ;;try-expand-line
+;;         ;;try-complete-lisp-symbol-partially
+;;         ;;try-complete-lisp-symbol
+;;         ))
 
-(defun indent-or-hippie-expand ()
-  "Indent. If point didn't move, try `hippie-expand`."
-  (interactive)
-  (let ((pt (point)))
-    (indent-for-tab-command)
-    (when (= pt (point))
-      (hippie-expand nil))))
+;; (defun indent-or-hippie-expand ()
+;;   "Indent. If point didn't move, try `hippie-expand`."
+;;   (interactive)
+;;   (let ((pt (point)))
+;;     (indent-for-tab-command)
+;;     (when (= pt (point))
+;;       (hippie-expand nil))))
 
-;; Use in programming and text buffers
-(add-hook 'prog-mode-hook
-          (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
-(add-hook 'text-mode-hook
-          (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
+;; ;; Use in programming and text buffers
+;; (add-hook 'prog-mode-hook
+;;           (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
+;; (add-hook 'text-mode-hook
+;;           (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
 
 
 ;;;; ==== TIME ====
@@ -80,32 +89,7 @@
 (setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))
 
 ;;;; ==== SPECIAL ESHELL BINDING ====
-(defun goto-eshell ()
-  (interactive)
-  (let ((eshell-exists nil))
-    (dolist (buf (buffer-list))
-      (when (string-equal "*eshell*" (buffer-name buf))
-        (setq eshell-exists t)))
-    (unless eshell-exists
-      (eshell))
-    (switch-to-buffer "*eshell*")
-    (delete-other-windows)))
-
-(define-key (current-global-map) (kbd "C-c k") 'goto-eshell)
-
-;;;; ==== QUICK RETURN TO FILE ====
-(defun goto-last-file-buffer ()
-  (interactive)
-  (let ((last-file nil))
-    (catch 'break 
-      (dolist (buf (buffer-list))
-        (when (buffer-file-name buf)
-          (switch-to-buffer buf)
-          (throw 'break (buffer-file-name buf))
-          )
-      ))))
-
-(define-key (current-global-map) (kbd "C-c j") 'goto-last-file-buffer)
+(define-key (current-global-map) (kbd "C-c k") 'eshell)
 
 ;;;; ==== QUICK STRING REPLACE ====
 (define-key (current-global-map) (kbd "C-c s") 'replace-string)
@@ -114,12 +98,7 @@
 (define-key (current-global-map) (kbd "C-c a") 'align-regexp)
 
 ;;;; ==== QUICK BUFSWAP ====
-(defun quick-bufswap ()
-  (interactive)
-  (mode-line-other-buffer)
-  (delete-other-windows)
-  )
-(define-key (current-global-map) (kbd "C-c n") 'quick-bufswap)
+(define-key (current-global-map) (kbd "C-c n") 'mode-line-other-buffer)
 
 ;;;; ==== QUICK DELETE OTHER WINDOWS ====
 (define-key (current-global-map) (kbd "C-c o") 'delete-other-windows)
@@ -145,7 +124,7 @@
               tab-width 4)
 
 ;;;; ==== ALLOW TAB AUTOCOMPLETE ====
-(setq tab-always-indent 'complete)
+;; (setq tab-always-indent 'complete)
 
 ;;;; ==== SHOW COLUMN 80 LIMIT ====
 (setq-default fill-column 80)
@@ -182,7 +161,7 @@
 (add-hook 'c-mode-common-hook #'my-c-mode-style)
 
 ;;;; ==== REMEMBER RECENT FILES ====
-(recentf-mode)
+(recentf-mode 1)
  
 ;;;; ==== DISABLE TOP BARS ====
 (tool-bar-mode -1)

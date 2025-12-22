@@ -17,7 +17,7 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode company evil go-mode gruber-darker-theme julia-mode lispy
+   '(cmake-mode company corfu evil go-mode gruber-darker-theme julia-mode
                 meson-mode mines multiple-cursors sly zig-mode))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
@@ -29,7 +29,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight regular :height 173 :width normal)))))
+ )
 
 ;;;; ==== FUN COMMANDS TO REMEMBER ====
 ;; spook
@@ -38,19 +38,20 @@
 ;; artist-mode
 
 
+;;;; ==== AUTOCOMPLETE ====
+(add-hook 'after-init-hook 'global-corfu-mode)
+
+
 ;;;; ==== BETTER LISP INTERACTIONS ====
-(add-hook 'after-init-hook 'global-company-mode)
 
-;; (setq inferior-lisp-program "sbcl")
-;; (setq slime-load-failed-fasl :never)
-
-(add-hook 'lisp-mode-hook 'lispy-mode)
+(add-hook 'lisp-mode-hook 'paredit-mode)
+(define-key lisp-mode-map (kbd "C-.") 'paredit-forward-slurp-sexp)
+(define-key lisp-mode-map (kbd "C-,") 'paredit-forward-barf-sexp)
 (add-hook 'lisp-mode-hook 'electric-indent-mode)
-(add-hook 'emacs-lisp-mode-hook 'lispy-mode)
 (add-hook 'emacs-lisp-mode-hook 'electric-indent-mode)
 
 
-;; Auto-refresh dired on file change
+;;;; ==== Auto-refresh dired on file change ====
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 ;; ;; make hippie-expand use dabbrev first

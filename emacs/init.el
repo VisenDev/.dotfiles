@@ -54,55 +54,43 @@
 ;;;; ==== Auto-refresh dired on file change ====
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
-;; ;; make hippie-expand use dabbrev first
-;; (setq hippie-expand-try-functions-list
-;;       '(try-expand-dabbrev
-;;         try-expand-dabbrev-all-buffers
-;;         try-expand-dabbrev-from-kill
-;;         try-complete-file-name-partially
-;;         try-complete-file-name
-;;         ;;try-expand-all-abbrevs
-;;         ;;try-expand-list
-;;         ;;try-expand-line
-;;         ;;try-complete-lisp-symbol-partially
-;;         ;;try-complete-lisp-symbol
-;;         ))
-
-;; (defun indent-or-hippie-expand ()
-;;   "Indent. If point didn't move, try `hippie-expand`."
-;;   (interactive)
-;;   (let ((pt (point)))
-;;     (indent-for-tab-command)
-;;     (when (= pt (point))
-;;       (hippie-expand nil))))
-
-;; ;; Use in programming and text buffers
-;; (add-hook 'prog-mode-hook
-;;           (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
-;; (add-hook 'text-mode-hook
-;;           (lambda () (local-set-key (kbd "TAB") #'indent-or-hippie-expand)))
-
-
 ;;;; ==== TIME ====
 (display-time-mode)
 
 ;;;; ==== ADD PATH ====
 (setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))
 
-;;;; ==== SPECIAL ESHELL BINDING ====
+;;;; ==== MY CUSTOM KEYBINDINGS ====
 (define-key (current-global-map) (kbd "C-c k") 'eshell)
 
-;;;; ==== QUICK STRING REPLACE ====
 (define-key (current-global-map) (kbd "C-c s") 'replace-string)
 
-;;;; ==== QUICK ALIGN REGEXP ====
 (define-key (current-global-map) (kbd "C-c a") 'align-regexp)
 
-;;;; ==== QUICK BUFSWAP ====
 (define-key (current-global-map) (kbd "C-c n") 'mode-line-other-buffer)
+(define-key (current-global-map) (kbd "C-c C-n") 'mode-line-other-buffer)
 
-;;;; ==== QUICK DELETE OTHER WINDOWS ====
 (define-key (current-global-map) (kbd "C-c o") 'delete-other-windows)
+(define-key (current-global-map) (kbd "C-c C-o") 'delete-other-windows)
+
+;;;; ==== JUMP TO SPECIAL BUFFER ====
+(keymap-global-unset "C-z")
+(defvar *special-buffer* nil "A buffer that can be easily jumped to with C-z")
+(defun switch-to-special-buffer ()
+  "Switch to the *special-buffer* if not the current buffer, otherwise mode-line-other-buffer"
+  (interactive)
+  (if (eq *special-buffer* (current-buffer))
+      (mode-line-other-buffer)
+    (switch-to-buffer *special-buffer*)
+    )
+  )
+(defun set-special-buffer ()
+  (interactive)
+  (message "set *special-buffer* to %s" (current-buffer))
+  (setq *special-buffer* (current-buffer))
+  )
+(define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
+(define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)
@@ -118,7 +106,7 @@
 (setq scroll-margin 10)
 
 ;;;; ==== DISABLE LINE WRAP ====
-(setq-default truncate-lines t)
+;(setq-default truncate-lines t)
 
 ;;;; ==== SPACES INSTEAD OF TABS ====
 (setq-default indent-tabs-mode nil

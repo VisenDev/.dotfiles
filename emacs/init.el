@@ -17,8 +17,8 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(cmake-mode company corfu evil go-mode gruber-darker-theme julia-mode
-                meson-mode mines multiple-cursors sly zig-mode))
+   '(company gruber-darker-theme paredit
+                sly))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
@@ -37,19 +37,15 @@
 ;; time-mode
 ;; artist-mode
 
-
 ;;;; ==== AUTOCOMPLETE ====
-(add-hook 'after-init-hook 'global-corfu-mode)
-
+(add-hook 'prog-mode-hook 'company-mode)
 
 ;;;; ==== BETTER LISP INTERACTIONS ====
-
 (add-hook 'lisp-mode-hook 'paredit-mode)
 (define-key lisp-mode-map (kbd "C-.") 'paredit-forward-slurp-sexp)
 (define-key lisp-mode-map (kbd "C-,") 'paredit-forward-barf-sexp)
 (add-hook 'lisp-mode-hook 'electric-indent-mode)
 (add-hook 'emacs-lisp-mode-hook 'electric-indent-mode)
-
 
 ;;;; ==== Auto-refresh dired on file change ====
 (add-hook 'dired-mode-hook 'auto-revert-mode)
@@ -62,10 +58,11 @@
 
 ;;;; ==== MY CUSTOM KEYBINDINGS ====
 (define-key (current-global-map) (kbd "C-c k") 'eshell)
-
 (define-key (current-global-map) (kbd "C-c s") 'replace-string)
-
 (define-key (current-global-map) (kbd "C-c a") 'align-regexp)
+(define-key (current-global-map) (kbd "C-c r") 'rgrep)
+(define-key (current-global-map) (kbd "C-;")   'other-window)
+(define-key (current-global-map) (kbd "C-'")   'switch-to-buffer)
 
 (define-key (current-global-map) (kbd "C-c n") 'mode-line-other-buffer)
 (define-key (current-global-map) (kbd "C-c C-n") 'mode-line-other-buffer)
@@ -73,8 +70,11 @@
 (define-key (current-global-map) (kbd "C-c o") 'delete-other-windows)
 (define-key (current-global-map) (kbd "C-c C-o") 'delete-other-windows)
 
+(define-key (current-global-map) (kbd "C-c l") 'compile)
+
+
 ;;;; ==== JUMP TO SPECIAL BUFFER ====
-(keymap-global-unset "C-z")
+
 (defvar *special-buffer* nil "A buffer that can be easily jumped to with C-z")
 (defun switch-to-special-buffer ()
   "Switch to the *special-buffer* if not the current buffer, otherwise mode-line-other-buffer"
@@ -89,6 +89,7 @@
   (message "set *special-buffer* to %s" (current-buffer))
   (setq *special-buffer* (current-buffer))
   )
+(keymap-global-unset "C-z")
 (define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
 (define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)
 
@@ -113,11 +114,11 @@
               tab-width 4)
 
 ;;;; ==== ALLOW TAB AUTOCOMPLETE ====
-;; (setq tab-always-indent 'complete)
+(setq tab-always-indent 'complete)
 
 ;;;; ==== SHOW COLUMN 80 LIMIT ====
-(setq-default fill-column 80)
-;(global-display-fill-column-indicator-mode 1)
+(setq-default fill-column 100)
+(global-display-fill-column-indicator-mode 1)
 
 ;;;; ==== C CODING STYLE ====
 (c-add-style "1tbs"
@@ -258,12 +259,6 @@
 ;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-
-;;;; ==== ODIN ====
-(load "~/.dotfiles/emacs/odin-mode.el")
-
-;;;; ==== COMPILE ====
-(define-key global-map (kbd "C-c l") 'compile)
 
 ;;;; ==== MELPA ====
 (add-to-list 'package-archives

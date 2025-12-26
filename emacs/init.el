@@ -243,7 +243,7 @@
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))
 
 ;;;; ==== SET FONT SIZE ====
-(set-face-attribute 'default nil :height 190)
+(set-face-attribute 'default nil :height 160)
 
 ;;;; ==== SET DEFUALT FONT TO TERMINUS ====
 ;;(set-frame-font "terminus")

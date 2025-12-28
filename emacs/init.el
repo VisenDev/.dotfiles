@@ -37,6 +37,12 @@
 ;; time-mode
 ;; artist-mode
 
+;;;; ==== BETTER FILE INTERACTIONS ====
+(ffap-bindings)
+
+;;;; ==== TAB BAR =====
+(tab-bar-mode 1)
+
 ;;;; ==== AUTOCOMPLETE ====
 (add-hook 'prog-mode-hook 'company-mode)
 
@@ -152,6 +158,15 @@
 
 ;;;; ==== REMEMBER RECENT FILES ====
 (recentf-mode 1)
+;; get rid of `find-file-read-only' and replace it with something
+;; more useful.
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
  
 ;;;; ==== DISABLE TOP BARS ====
 (tool-bar-mode -1)

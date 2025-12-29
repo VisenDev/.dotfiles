@@ -40,9 +40,6 @@
 ;;;; ==== BETTER FILE INTERACTIONS ====
 (ffap-bindings)
 
-;;;; ==== TAB BAR =====
-(tab-bar-mode 1)
-
 ;;;; ==== AUTOCOMPLETE ====
 (add-hook 'prog-mode-hook 'company-mode)
 

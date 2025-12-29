@@ -36,6 +36,10 @@
 ;; xref
 ;; time-mode
 ;; artist-mode
+;; proced
+
+;;;; ==== DONT ASK TO KILL PROCESSES BEFORE EXITING ====
+(setq confirm-kill-processes nil)
 
 ;;;; ==== BETTER FILE INTERACTIONS ====
 (ffap-bindings)
@@ -52,6 +56,9 @@
 
 ;;;; ==== Auto-refresh dired on file change ====
 (add-hook 'dired-mode-hook 'auto-revert-mode)
+
+;;;; ==== Auto-refresh proced on file change ====
+(add-hook 'proced-mode-hook 'auto-revert-mode)
 
 ;;;; ==== TIME ====
 (display-time-mode)
@@ -261,12 +268,7 @@
 ;;(set-frame-font "terminus")
 
 ;;;; ==== AUTOSTART ESHELL ====
-(let ((eshell-exists nil))
-  (dolist (buf (buffer-list))
-    (when (string-equal "*eshell*" (buffer-name buf))
-      (setq eshell-exists t)))
-  (unless eshell-exists
-    (eshell)))
+(eshell)
 
 ;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)

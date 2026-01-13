@@ -17,7 +17,9 @@ exec foot --server
 #
 # Read `man 5 sway` for a complete reference.
 
+
 input "type:keyboard" xkb_options caps:escape
+input "type:keyboard" xkb_options alt_win:swap_alt_win
 
 ### Variables
 #

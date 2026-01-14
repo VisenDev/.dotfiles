@@ -67,14 +67,17 @@
 
 ;;;; ==== ESHELL ====
 (defun eshell-at-cwd ()
+  "Opens eshell in the same buffer as the current buffer"
   (interactive)
-  (let ((cwd default-directory))
+  (let ((cwd (buffer-local-value 'default-directory (current-buffer))))
     (eshell)
-    (end-of-buffer)
-    (move-beginning-of-line nil)
-    (kill-line)
-    (insert "cd " cwd)
-    (eshell-send-input)))
+    (eshell-kill-input)
+    (unless (string= (buffer-local-value 'default-directory (current-buffer))
+                     cwd)
+      (insert "cd " cwd)
+      (eshell-send-input)
+      )
+  ))
 
 ;;;; ==== MY CUSTOM KEYBINDINGS ====
 (define-key (current-global-map) (kbd "C-c k") 'eshell-at-cwd)

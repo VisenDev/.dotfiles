@@ -16,9 +16,7 @@
  '(inhibit-startup-screen t)
  '(next-screen-context-lines 10)
  '(package-native-compile t)
- '(package-selected-packages
-   '(company gruber-darker-theme paredit
-                sly))
+ '(package-selected-packages '(company gruber-darker-theme markdown-mode paredit slime))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
@@ -37,6 +35,7 @@
 ;; time-mode
 ;; artist-mode
 ;; proced
+
 
 ;;;; ==== DONT ASK TO KILL PROCESSES BEFORE EXITING ====
 (setq confirm-kill-processes nil)
@@ -66,8 +65,19 @@
 ;;;; ==== ADD PATH ====
 (setenv "PATH" (format "%s:%s" "~/.local/bin/" (getenv "PATH")))
 
+;;;; ==== ESHELL ====
+(defun eshell-at-cwd ()
+  (interactive)
+  (let ((cwd default-directory))
+    (eshell)
+    (end-of-buffer)
+    (move-beginning-of-line nil)
+    (kill-line)
+    (insert "cd " cwd)
+    (eshell-send-input)))
+
 ;;;; ==== MY CUSTOM KEYBINDINGS ====
-(define-key (current-global-map) (kbd "C-c k") 'eshell)
+(define-key (current-global-map) (kbd "C-c k") 'eshell-at-cwd)
 (define-key (current-global-map) (kbd "C-c s") 'replace-string)
 (define-key (current-global-map) (kbd "C-c a") 'align-regexp)
 (define-key (current-global-map) (kbd "C-c r") 'rgrep)
@@ -117,7 +127,7 @@
 (setq scroll-margin 10)
 
 ;;;; ==== DISABLE LINE WRAP ====
-;(setq-default truncate-lines t)
+(setq-default truncate-lines t)
 
 ;;;; ==== SPACES INSTEAD OF TABS ====
 (setq-default indent-tabs-mode nil
@@ -228,11 +238,14 @@
   (find-file "~/.dotfiles/emacs/init.el"))
 
 ;;;; ==== SLY ====
-(add-hook 'sly-mode-hook
-          (lambda ()
-            (unless (sly-connected-p)
-              (save-excursion (sly)))))
+;; (add-hook 'sly-mode-hook
+;;           (lambda ()
+;;             (unless (sly-connected-p)
+;;               (save-excursion (sly)))))
 (setq inferior-lisp-program "sbcl")
+
+;;;; ==== SLIME ====
+(setq slime-load-failed-fasl 'always)
 
 ;;;; ==== THEME ====
 (load-theme 'gruber-darker)

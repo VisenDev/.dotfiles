@@ -37,6 +37,16 @@
 ;; proced
 
 
+;;;; ==== JOIN NEXT LINE ====
+(defun join-next-line ()
+  (interactive)
+  (push-mark (point))
+  (move-end-of-line nil)
+  (next-line)
+  (join-line)
+  (pop-global-mark))
+(define-key (current-global-map) (kbd "C-c j") 'join-next-line)
+
 ;;;; ==== DONT ASK TO KILL PROCESSES BEFORE EXITING ====
 (setq confirm-kill-processes nil)
 
@@ -95,7 +105,6 @@
 
 (define-key (current-global-map) (kbd "C-c l") 'compile)
 
-
 ;;;; ==== JUMP TO SPECIAL BUFFER ====
 
 (defvar *special-buffer* nil "A buffer that can be easily jumped to with C-z")
@@ -107,11 +116,24 @@
     (switch-to-buffer *special-buffer*)
     )
   )
+
 (defun set-special-buffer ()
   (interactive)
   (message "set *special-buffer* to %s" (current-buffer))
   (setq *special-buffer* (current-buffer))
   )
+
+(defun advised-function ()
+  (interactive)
+  (message "Advised:"))
+(defun advisor ()
+  (interactive)
+  (message "Giving advice"))
+
+(advice-add 'advisor :before 'advised-function)
+
+
+
 (keymap-global-unset "C-z")
 (define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
 (define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)

@@ -123,17 +123,6 @@
   (setq *special-buffer* (current-buffer))
   )
 
-(defun advised-function ()
-  (interactive)
-  (message "Advised:"))
-(defun advisor ()
-  (interactive)
-  (message "Giving advice"))
-
-(advice-add 'advisor :before 'advised-function)
-
-
-
 (keymap-global-unset "C-z")
 (define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
 (define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)

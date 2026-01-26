@@ -37,14 +37,19 @@
 ;; proced
 
 
+;;;; ==== TRASH ====
+(setq delete-by-moving-to-trash t)
+
+
 ;;;; ==== JOIN NEXT LINE ====
 (defun join-next-line ()
   (interactive)
-  (push-mark (point))
-  (move-end-of-line nil)
-  (next-line)
-  (join-line)
-  (pop-global-mark))
+  (let ((p (point)))
+    (move-end-of-line nil)
+    (next-line)
+    (join-line)
+    (goto-char p)
+    ))
 (define-key (current-global-map) (kbd "C-c j") 'join-next-line)
 
 ;;;; ==== DONT ASK TO KILL PROCESSES BEFORE EXITING ====

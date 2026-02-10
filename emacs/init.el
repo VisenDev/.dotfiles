@@ -16,8 +16,12 @@
  '(inhibit-startup-screen t)
  '(next-screen-context-lines 10)
  '(package-native-compile t)
- '(package-selected-packages '(company gruber-darker-theme markdown-mode paredit slime))
+ '(package-selected-packages
+   '(bible-gateway company gruber-darker-theme markdown-mode paredit slime))
+ '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
+ '(safe-local-variable-values
+   '((Syntax . Common-Lisp) (Lowercase . T) (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))

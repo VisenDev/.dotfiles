@@ -11,12 +11,22 @@
    '("6dbb88c9f23bad08cd4d52182100a1f899527c39ffdc8dc58d05cc558ce62e5e"
      "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
  '(display-time-mode t)
+ '(erc-accidental-paste-threshold-seconds 1)
+ '(erc-autojoin-channels-alist
+   '((Libera.Chat "##meshtasic" "#shirakumo" "#i2p" "#lisp" "#emacs" "#commonlisp")))
+ '(erc-hide-list '("JOIN" "PART" "QUIT"))
+ '(erc-keep-place-indicator-follow t)
+ '(erc-modules
+   '(autoaway autojoin button completion fill imenu irccontrols keep-place list match menu
+              move-to-prompt netsplit networks readonly ring sound stamp track unmorse))
+ '(erc-nick "Visen")
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
  '(next-screen-context-lines 10)
  '(package-native-compile t)
- '(package-selected-packages '(company gruber-darker-theme markdown-mode paredit slime))
+ '(package-selected-packages
+   '(bongo company gruber-darker-theme markdown-mode paredit slime))
  '(ring-bell-function #'ignore)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)

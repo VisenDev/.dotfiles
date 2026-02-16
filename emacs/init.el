@@ -27,7 +27,10 @@
  '(package-native-compile t)
  '(package-selected-packages
    '(bongo company gruber-darker-theme markdown-mode paredit slime))
+ '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
+ '(safe-local-variable-values
+   '((Syntax . Common-Lisp) (Lowercase . T) (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))

@@ -30,7 +30,8 @@
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
-   '((Syntax . Common-Lisp) (Lowercase . T) (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
+   '((Lowercase . Yes) (Syntax . Common-lisp) (Syntax . Common-Lisp) (Lowercase . T) (Base . 10)
+     (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -48,6 +49,9 @@
 ;; time-mode
 ;; artist-mode
 ;; proced
+
+;;;; ==== DIRED ====
+(setq dired-kill-when-opening-new-dired-buffer t)
 
 
 ;;;; ==== TRASH ====

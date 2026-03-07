@@ -62,7 +62,6 @@
 ;;;; ==== TRASH ====
 (setq delete-by-moving-to-trash t)
 
-
 ;;;; ==== JOIN NEXT LINE ====
 (defun join-next-line ()
   (interactive)
@@ -177,8 +176,8 @@
 ;;;; ==== ALLOW TAB AUTOCOMPLETE ====
 (setq tab-always-indent 'complete)
 
-;;;; ==== SHOW COLUMN 80 LIMIT ====
-(setq-default fill-column 100)
+;;;; ==== SHOW COLUMN LIMIT ====
+(setq-default fill-column 93) 
 (global-display-fill-column-indicator-mode 1)
 
 ;;;; ==== C CODING STYLE ====

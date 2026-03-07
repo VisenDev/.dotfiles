@@ -30,7 +30,8 @@
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
-   '((Syntax . Common-Lisp) (Lowercase . T) (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
+   '((Package . ASDF) (Package . CL-USER) (Syntax . ANSI-Common-Lisp) (Syntax . Common-Lisp)
+     (Lowercase . T) (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -48,6 +49,11 @@
 ;; time-mode
 ;; artist-mode
 ;; proced
+
+;;;; ==== COLLAPSE ====
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(global-set-key (kbd "C-c <right>") 'hs-show-block)
+(global-set-key (kbd "C-c <left>") 'hs-hide-block)
 
 
 ;;;; ==== TRASH ====
@@ -72,7 +78,7 @@
 (ffap-bindings)
 
 ;;;; ==== AUTOCOMPLETE ====
-(add-hook 'prog-mode-hook 'company-mode)
+;; (add-hook 'prog-mode-hook 'company-mode)
 
 ;;;; ==== BETTER LISP INTERACTIONS ====
 (add-hook 'lisp-mode-hook 'paredit-mode)
@@ -159,7 +165,7 @@
 (setq scroll-margin 10)
 
 ;;;; ==== DISABLE LINE WRAP ====
-(setq-default truncate-lines t)
+;; (setq-default truncate-lines t)
 
 ;;;; ==== SPACES INSTEAD OF TABS ====
 (setq-default indent-tabs-mode nil

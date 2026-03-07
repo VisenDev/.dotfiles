@@ -50,11 +50,14 @@
 ;; artist-mode
 ;; proced
 
+
 ;;;; ==== COLLAPSE ====
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (global-set-key (kbd "C-c <right>") 'hs-show-block)
 (global-set-key (kbd "C-c <left>") 'hs-hide-block)
 
+;;;; ==== DIRED ====
+(setq dired-kill-when-opening-new-dired-buffer t)
 
 ;;;; ==== TRASH ====
 (setq delete-by-moving-to-trash t)

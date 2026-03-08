@@ -11,6 +11,7 @@
    '("6dbb88c9f23bad08cd4d52182100a1f899527c39ffdc8dc58d05cc558ce62e5e"
      "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
  '(display-time-mode t)
+ '(doc-view-mupdf-use-svg nil)
  '(erc-accidental-paste-threshold-seconds 1)
  '(erc-autojoin-channels-alist
    '((Libera.Chat "##meshtasic" "#shirakumo" "#i2p" "#lisp" "#emacs" "#commonlisp")))
@@ -50,6 +51,13 @@
 ;; artist-mode
 ;; proced
 
+;;;; ==== UNBLUR PDF TEXT ====
+(setq doc-view-resolution 200)
+
+;;;; ==== EMACS SERVER ====
+(defvar use-emacs-server t)
+(when use-emacs-server
+  (server-start))
 
 ;;;; ==== COLLAPSE ====
 (add-hook 'prog-mode-hook #'hs-minor-mode)
@@ -246,7 +254,8 @@
 (setq url-proxy-services '(("http" . "localhost:4444")))
 
 ;;;; ==== FULLSCREEN ====
-(toggle-frame-fullscreen)
+(unless use-emacs-server
+  (toggle-frame-fullscreen))
 
 ;;;; ==== QUICK INTERNET FUNCTIONS ====
 (defun clhs ()
@@ -321,7 +330,8 @@
 ;;(set-frame-font "terminus")
 
 ;;;; ==== AUTOSTART ESHELL ====
-(eshell)
+(unless use-emacs-server
+  (eshell))
 
 ;;;; ==== ALLOW UPCASE AND DOWNCASE ====
 (put 'upcase-region 'disabled nil)

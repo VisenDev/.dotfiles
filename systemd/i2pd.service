@@ -1,0 +1,8 @@
+[Unit]
+Description=i2pd router
+[Service]
+Type=simple
+TimeoutStartSec=0
+ExecStart=/home/robertb/.local/bin/i2pd
+[Install]
+WantedBy=default.target

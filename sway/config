@@ -4,7 +4,7 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 000000'
 
 
-exec waybar
+# exec waybar
 exec foot --server
 
          #timeout 600 'swaymsg "output * dpms off"' \
@@ -89,7 +89,7 @@ hide_edge_borders --i3 both
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+w kill
+    bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+p exec $menu
@@ -105,7 +105,7 @@ hide_edge_borders --i3 both
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #

@@ -3,6 +3,6 @@ Description=i2pd router
 [Service]
 Type=simple
 TimeoutStartSec=0
-ExecStart=/home/robertb/.local/bin/i2pd
+ExecStart=/home/robertb/.local/bin/i2pd --conf /home/robertb/.dotfiles/i2pd/i2pd.conf
 [Install]
 WantedBy=default.target

@@ -31,8 +31,15 @@
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
-   '((Package . ASDF) (Package . CL-USER) (Syntax . ANSI-Common-Lisp) (Syntax . Common-Lisp)
-     (Lowercase . T) (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
+   '((eval font-lock-add-keywords 'lisp-mode
+           '(("(\\(fn\\|\\*let\\)\\_>" 1 font-lock-keyword-face)))
+     (Package . MARSHAL) (Package . DEMO-SCROLLBAR) (Package . DEMO-MENU) (Package . OPAL)
+     (Syntax . Common-lisp) (Package CLOSETTE :USE LISP) (Package . INTERACTORS)
+     (Package . GEM) (Package . DEMO-TWOP) (Package . KR) (Package . GARNET-GADGETS)
+     (Package . GARNET-UTILS) (base . 10) (package . c32) (syntax . common-lisp)
+     (Package . C32) (Package . COMMON-LISP-USER) (Package . ASDF) (Package . CL-USER)
+     (Syntax . ANSI-Common-Lisp) (Syntax . Common-Lisp) (Lowercase . T) (Base . 10)
+     (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -352,3 +359,8 @@
 
 ;;;; ==== LITAC SYNTAX ====
 (add-to-list 'auto-mode-alist '("\\.lita\\'" . c-mode))
+
+(font-lock-add-keywords
+        'lisp-mode
+        '(("(\\(fn\\|\\*let\\)\\_>"
+           1 font-lock-keyword-face)))

@@ -192,7 +192,7 @@
 (setq tab-always-indent 'complete)
 
 ;;;; ==== SHOW COLUMN LIMIT ====
-(setq-default fill-column 93) 
+(setq-default fill-column 77) 
 (global-display-fill-column-indicator-mode 1)
 
 ;;;; ==== C CODING STYLE ====

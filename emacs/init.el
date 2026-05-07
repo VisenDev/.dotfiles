@@ -361,7 +361,8 @@
 (add-to-list 'auto-mode-alist '("\\.lita\\'" . c-mode))
 
 ;;;; ==== A FEW CUSTOM LISP KEYWORDS ====
-(font-lock-add-keywords        
- 'lisp-mode                    
- '(("(\\(fn\\|\\*let\\|\\defclass\/std\\|\\class\/std\\)\\_>"   
-    1 font-lock-keyword-face)))
+(font-lock-add-keywords
+ 'lisp-mode
+ '(("\\_<\\(?:[[:alnum:]]+:\\{1,2\\}\\)?\\(fn\\|*let\\|defclass/std\\|class/std\\|when-let\\|if-let\\)\\_>"
+    1 font-lock-keyword-face))
+ t)

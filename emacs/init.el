@@ -360,7 +360,8 @@
 ;;;; ==== LITAC SYNTAX ====
 (add-to-list 'auto-mode-alist '("\\.lita\\'" . c-mode))
 
-(font-lock-add-keywords
-        'lisp-mode
-        '(("(\\(fn\\|\\*let\\)\\_>"
-           1 font-lock-keyword-face)))
+;;;; ==== A FEW CUSTOM LISP KEYWORDS ====
+(font-lock-add-keywords        
+ 'lisp-mode                    
+ '(("(\\(fn\\|\\*let\\|\\defclass\/std\\|\\class\/std\\)\\_>"   
+    1 font-lock-keyword-face)))

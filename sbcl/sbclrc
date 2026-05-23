@@ -1,15 +1,17 @@
 
 
-#-asdf
-(if (probe-file #P"~/common-lisp/asdf/build/asdf.lisp")
-  (load #P"~/common-lisp/asdf/build/asdf.lisp")
-  (load #p"asdf.lisp"))
+
+;; (if (probe-file #P"~/common-lisp/asdf/build/asdf.lisp")
+;;   (load #P"~/common-lisp/asdf/build/asdf.lisp")
+;;   (load #p"asdf.lisp"))
 
 ;#-ocicl
 ;(when (probe-file #P"~/.local/share/ocicl/ocicl-runtime.lisp")
 ;  (load #P"~/.local/share/ocicl/ocicl-runtime.lisp"))
 ;(asdf:initialize-source-registry
 ;  (list :source-registry (list :directory (uiop:getcwd)) :inherit-configuration))
+
+(load (merge-pathnames "quicklisp/asdf.lisp" (user-homedir-pathname)))
 
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"

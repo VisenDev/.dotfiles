@@ -147,7 +147,6 @@
 (define-key (current-global-map) (kbd "C-c l") 'compile)
 
 ;;;; ==== JUMP TO SPECIAL BUFFER ====
-
 (defvar *special-buffer* nil "A buffer that can be easily jumped to with C-z")
 (defun switch-to-special-buffer ()
   "Switch to the *special-buffer* if not the current buffer, otherwise mode-line-other-buffer"
@@ -161,8 +160,7 @@
 (defun set-special-buffer ()
   (interactive)
   (message "set *special-buffer* to %s" (current-buffer))
-  (setq *special-buffer* (current-buffer))
-  )
+  (setq *special-buffer* (current-buffer)))
 
 (keymap-global-unset "C-z")
 (define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
@@ -366,3 +364,18 @@
  '(("\\_<\\(?:[[:alnum:]]+:\\{1,2\\}\\)?\\(fn\\|*let\\|defclass/std\\|class/std\\|when-let\\|if-let\\)\\_>"
     1 font-lock-keyword-face))
  t)
+
+
+;;;; ==== COPY PASTE ON MACOS ====
+(defun darwin-yank ()
+  (shell-command-to-string "pbpaste"))
+
+(defun darwin-kill (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(when (string-equal system-type "darwin")
+  (setq interprogram-cut-function 'darwin-kill)
+  (setq interprogram-paste-function 'darwin-yank))

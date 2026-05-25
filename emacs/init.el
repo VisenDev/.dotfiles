@@ -359,12 +359,15 @@
 (add-to-list 'auto-mode-alist '("\\.lita\\'" . c-mode))
 
 ;;;; ==== A FEW CUSTOM LISP KEYWORDS ====
+(defvar *lisp-keywords*
+  '(fn *let defclass/std class/std
+       when-let if-let defstruct*))
+
 (font-lock-add-keywords
  'lisp-mode
- '(("\\_<\\(?:[[:alnum:]]+:\\{1,2\\}\\)?\\(fn\\|*let\\|defclass/std\\|class/std\\|when-let\\|if-let\\)\\_>"
-    1 font-lock-keyword-face))
+ (list (regexp-opt (mapcar (lambda (kw) (symbol-name kw)) *lisp-keywords*))
+       1 font-lock-keyword-face)
  t)
-
 
 ;;;; ==== COPY PASTE ON MACOS ====
 (defun darwin-yank ()
@@ -379,3 +382,5 @@
 (when (string-equal system-type "darwin")
   (setq interprogram-cut-function 'darwin-kill)
   (setq interprogram-paste-function 'darwin-yank))
+
+

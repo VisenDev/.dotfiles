@@ -9,17 +9,20 @@
  '(column-number-mode t)
  '(custom-safe-themes
    '("6dbb88c9f23bad08cd4d52182100a1f899527c39ffdc8dc58d05cc558ce62e5e"
-     "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default))
+     "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7"
+     default))
  '(display-time-mode t)
  '(doc-view-mupdf-use-svg nil)
  '(erc-accidental-paste-threshold-seconds 1)
  '(erc-autojoin-channels-alist
-   '((Libera.Chat "##meshtasic" "#shirakumo" "#i2p" "#lisp" "#emacs" "#commonlisp")))
+   '((Libera.Chat "##meshtasic" "#shirakumo" "#i2p" "#lisp" "#emacs"
+                  "#commonlisp")))
  '(erc-hide-list '("JOIN" "PART" "QUIT"))
  '(erc-keep-place-indicator-follow t)
  '(erc-modules
-   '(autoaway autojoin button completion fill imenu irccontrols keep-place list match menu
-              move-to-prompt netsplit networks readonly ring sound stamp track unmorse))
+   '(autoaway autojoin button completion fill imenu irccontrols keep-place list
+              match menu move-to-prompt netsplit networks readonly ring sound
+              stamp track unmorse))
  '(erc-nick "Visen")
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-buffer-menu t)
@@ -27,19 +30,20 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(bongo company gruber-darker-theme markdown-mode paredit slime))
+   '(bongo company free-keys gruber-darker-theme markdown-mode paredit slime))
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
    '((eval font-lock-add-keywords 'lisp-mode
            '(("(\\(fn\\|\\*let\\)\\_>" 1 font-lock-keyword-face)))
-     (Package . MARSHAL) (Package . DEMO-SCROLLBAR) (Package . DEMO-MENU) (Package . OPAL)
-     (Syntax . Common-lisp) (Package CLOSETTE :USE LISP) (Package . INTERACTORS)
-     (Package . GEM) (Package . DEMO-TWOP) (Package . KR) (Package . GARNET-GADGETS)
-     (Package . GARNET-UTILS) (base . 10) (package . c32) (syntax . common-lisp)
-     (Package . C32) (Package . COMMON-LISP-USER) (Package . ASDF) (Package . CL-USER)
-     (Syntax . ANSI-Common-Lisp) (Syntax . Common-Lisp) (Lowercase . T) (Base . 10)
-     (Syntax . COMMON-LISP) (Package . XLIB)))
+     (Package . MARSHAL) (Package . DEMO-SCROLLBAR) (Package . DEMO-MENU)
+     (Package . OPAL) (Syntax . Common-lisp) (Package CLOSETTE :USE LISP)
+     (Package . INTERACTORS) (Package . GEM) (Package . DEMO-TWOP)
+     (Package . KR) (Package . GARNET-GADGETS) (Package . GARNET-UTILS)
+     (base . 10) (package . c32) (syntax . common-lisp) (Package . C32)
+     (Package . COMMON-LISP-USER) (Package . ASDF) (Package . CL-USER)
+     (Syntax . ANSI-Common-Lisp) (Syntax . Common-Lisp) (Lowercase . T)
+     (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -100,7 +104,9 @@
 ;;;; ==== BETTER LISP INTERACTIONS ====
 (add-hook 'lisp-mode-hook 'paredit-mode)
 (define-key lisp-mode-map (kbd "C-.") 'paredit-forward-slurp-sexp)
+(define-key lisp-mode-map (kbd "M-F") 'paredit-forward-slurp-sexp)
 (define-key lisp-mode-map (kbd "C-,") 'paredit-forward-barf-sexp)
+(define-key lisp-mode-map (kbd "M-B") 'paredit-forward-barf-sexp)
 (add-hook 'lisp-mode-hook 'electric-indent-mode)
 (add-hook 'emacs-lisp-mode-hook 'electric-indent-mode)
 

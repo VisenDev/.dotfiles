@@ -172,8 +172,10 @@
   (setq *special-buffer* (current-buffer)))
 
 (keymap-global-unset "C-z")
-(define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
-(define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)
+;; (define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
+;; (define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)
+(global-set-key (kbd "C-z" 'undo)
+
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)

@@ -370,12 +370,8 @@
 (defvar *lisp-keywords*
   '(fn *let defclass/std class/std
        when-let if-let defstruct*
-<<<<<<< HEAD
-       defenum defalias .))
-=======
        defenum defield field defprocedure
        import))
->>>>>>> 4a76ca9c7162bcd1351fa7c0f8bccb8ef0ddc54c
 
 (font-lock-add-keywords
  'lisp-mode

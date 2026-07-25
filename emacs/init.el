@@ -27,15 +27,17 @@
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-screen t)
+ '(mark-even-if-inactive nil)
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(bongo cmake-ide cmake-mode company free-keys gruber-darker-theme
-           markdown-mode org-beautify-theme paredit slime))
+   '(bongo cmake-mode company free-keys gruber-darker-theme markdown-mode
+           paredit slime))
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
-   '((eval font-lock-add-keywords 'lisp-mode
+   '((Package . ANAPHORA)
+     (eval font-lock-add-keywords 'lisp-mode
            '(("(\\(fn\\|\\*let\\)\\_>" 1 font-lock-keyword-face)))
      (Package . MARSHAL) (Package . DEMO-SCROLLBAR) (Package . DEMO-MENU)
      (Package . OPAL) (Syntax . Common-lisp) (Package CLOSETTE :USE LISP)
@@ -151,7 +153,7 @@
 (define-key (current-global-map) (kbd "C-c o") 'delete-other-windows)
 (define-key (current-global-map) (kbd "C-c C-o") 'delete-other-windows)
 
-(define-key (current-global-map) (kbd "C-c l") 'compile)
+(define-key (current-global-map) (kbd "C-c l") 'project-compile)
 
 ;;;; ==== JUMP TO SPECIAL BUFFER ====
 (defvar *special-buffer* nil "A buffer that can be easily jumped to with C-z")
@@ -170,8 +172,10 @@
   (setq *special-buffer* (current-buffer)))
 
 (keymap-global-unset "C-z")
-(define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
-(define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)
+;; (define-key (current-global-map) (kbd "C-z") 'switch-to-special-buffer)
+;; (define-key (current-global-map) (kbd "C-M-z") 'set-special-buffer)
+(global-set-key (kbd "C-z" 'undo)
+
 
 ;;;; ==== PARTIAL KEY CHORD ====
 (which-key-mode)
@@ -366,7 +370,12 @@
 (defvar *lisp-keywords*
   '(fn *let defclass/std class/std
        when-let if-let defstruct*
+<<<<<<< HEAD
        defenum defalias .))
+=======
+       defenum defield field defprocedure
+       import))
+>>>>>>> 4a76ca9c7162bcd1351fa7c0f8bccb8ef0ddc54c
 
 (font-lock-add-keywords
  'lisp-mode
@@ -389,6 +398,7 @@
   (setq interprogram-paste-function 'darwin-yank))
 
 
+
 (setq treesit-language-source-alist
       '((c3 "https://github.com/c3lang/tree-sitter-c3")))
 (add-to-list 'load-path "~/.dotfiles/emacs")
@@ -407,3 +417,15 @@
 (setq org-babel-default-header-args
       '((:results . "replace")
         (:exports . "both")))
+
+;; ==== Some better bindings ====
+
+(define-key (current-global-map) (kbd "M-o") 'other-window)
+
+
+;; (global-set-key (kbd "C-c l") #'org-store-link)
+;; (global-set-key (kbd "C-c a") #'org-agenda)
+;; (global-set-key (kbd "C-c c") #'org-capture)
+
+
+

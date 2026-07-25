@@ -1,4 +1,4 @@
-; -*- lexical-binding: t; -*-
+2; -*- lexical-binding: t; -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,7 +30,8 @@
  '(next-screen-context-lines 10)
  '(package-native-compile t)
  '(package-selected-packages
-   '(bongo company free-keys gruber-darker-theme markdown-mode paredit slime))
+   '(bongo cmake-ide cmake-mode company free-keys gruber-darker-theme
+           markdown-mode org-beautify-theme paredit slime))
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
@@ -66,7 +67,7 @@
 (setq doc-view-resolution 200)
 
 ;;;; ==== EMACS SERVER ====
-(defvar use-emacs-server t)
+(defvar use-emacs-server nil)
 (when use-emacs-server
   (server-start))
 
@@ -335,7 +336,7 @@
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))
 
 ;;;; ==== SET FONT SIZE ====
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil :height 120)
 
 ;;;; ==== SET DEFUALT FONT TO TERMINUS ====
 ;;(set-frame-font "terminus")
@@ -352,9 +353,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-;;;; ==== C3 SYNTAX ====
-(add-to-list 'auto-mode-alist '("\\.c3\\'" . c-mode))
-
 ;;;; ==== TCL CONFIG ====
 (setq-default tcl-application "tclsh")
 
@@ -367,7 +365,8 @@
 ;;;; ==== A FEW CUSTOM LISP KEYWORDS ====
 (defvar *lisp-keywords*
   '(fn *let defclass/std class/std
-       when-let if-let defstruct*))
+       when-let if-let defstruct*
+       defenum defalias .))
 
 (font-lock-add-keywords
  'lisp-mode
@@ -390,3 +389,21 @@
   (setq interprogram-paste-function 'darwin-yank))
 
 
+(setq treesit-language-source-alist
+      '((c3 "https://github.com/c3lang/tree-sitter-c3")))
+(add-to-list 'load-path "~/.dotfiles/emacs")
+;; (load "~/.dotfiles/emacs/c3-ts-mode.el")
+(require 'c3-ts-mode)
+
+
+;; ORG MODE
+(require 'org)
+(setq org-src-fontify-natively t
+    org-src-tab-acts-natively t
+    org-confirm-babel-evaluate nil
+    org-edit-src-content-indentation 0)
+(set-face-attribute 'org-block nil
+                    :inherit 'default)
+(setq org-babel-default-header-args
+      '((:results . "replace")
+        (:exports . "both")))

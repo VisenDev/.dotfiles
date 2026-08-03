@@ -155,6 +155,16 @@
 
 (define-key (current-global-map) (kbd "C-c l") 'project-compile)
 
+;; Overwrite buffer-menu-other-window
+(defun buffer-menu* ()
+  (interactive)
+  (buffer-menu)
+  (next-line))
+(define-key (current-global-map) (kbd "C-x C-b") 'buffer-menu*)
+
+;;;; TODO
+;; when entering image mode / document mode, disable line numbers mode
+
 ;;;; ==== JUMP TO SPECIAL BUFFER ====
 (defvar *special-buffer* nil "A buffer that can be easily jumped to with C-z")
 (defun switch-to-special-buffer ()

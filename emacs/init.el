@@ -37,8 +37,6 @@
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
    '((Package . ANAPHORA)
-     (eval font-lock-add-keywords 'lisp-mode
-           '(("(\\(fn\\|\\*let\\)\\_>" 1 font-lock-keyword-face)))
      (Package . MARSHAL) (Package . DEMO-SCROLLBAR) (Package . DEMO-MENU)
      (Package . OPAL) (Syntax . Common-lisp) (Package CLOSETTE :USE LISP)
      (Package . INTERACTORS) (Package . GEM) (Package . DEMO-TWOP)
@@ -385,8 +383,12 @@
 
 (font-lock-add-keywords
  'lisp-mode
- (list (regexp-opt (mapcar (lambda (kw) (symbol-name kw)) *lisp-keywords*))
-       1 font-lock-keyword-face)
+ `((,(regexp-opt
+       (mapcar (lambda (kw)
+                 (symbol-name kw))
+               *lisp-keywords*)
+       'symbols)
+    0 font-lock-keyword-face))
  t)
 
 ;;;; ==== COPY PASTE ON MACOS ====

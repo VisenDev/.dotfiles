@@ -32,19 +32,19 @@
  '(package-native-compile t)
  '(package-selected-packages
    '(bongo cmake-mode company free-keys gruber-darker-theme markdown-mode
-           paredit slime))
+           paredit php-mode slime))
  '(proced-auto-update-flag 'visible)
  '(ring-bell-function #'ignore)
  '(safe-local-variable-values
-   '((Package . ANAPHORA)
-     (Package . MARSHAL) (Package . DEMO-SCROLLBAR) (Package . DEMO-MENU)
-     (Package . OPAL) (Syntax . Common-lisp) (Package CLOSETTE :USE LISP)
-     (Package . INTERACTORS) (Package . GEM) (Package . DEMO-TWOP)
-     (Package . KR) (Package . GARNET-GADGETS) (Package . GARNET-UTILS)
-     (base . 10) (package . c32) (syntax . common-lisp) (Package . C32)
-     (Package . COMMON-LISP-USER) (Package . ASDF) (Package . CL-USER)
-     (Syntax . ANSI-Common-Lisp) (Syntax . Common-Lisp) (Lowercase . T)
-     (Base . 10) (Syntax . COMMON-LISP) (Package . XLIB)))
+   '((Package . ANAPHORA) (Package . MARSHAL) (Package . DEMO-SCROLLBAR)
+     (Package . DEMO-MENU) (Package . OPAL) (Syntax . Common-lisp)
+     (Package CLOSETTE :USE LISP) (Package . INTERACTORS) (Package . GEM)
+     (Package . DEMO-TWOP) (Package . KR) (Package . GARNET-GADGETS)
+     (Package . GARNET-UTILS) (base . 10) (package . c32)
+     (syntax . common-lisp) (Package . C32) (Package . COMMON-LISP-USER)
+     (Package . ASDF) (Package . CL-USER) (Syntax . ANSI-Common-Lisp)
+     (Syntax . Common-Lisp) (Lowercase . T) (Base . 10)
+     (Syntax . COMMON-LISP) (Package . XLIB)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(url-proxy-services '(("http" . "127.0.0.1:4000")))
@@ -348,7 +348,7 @@
 (setq backup-directory-alist `(("." . "~/.emacs-backups")))
 
 ;;;; ==== SET FONT SIZE ====
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 160)
 
 ;;;; ==== SET DEFUALT FONT TO TERMINUS ====
 ;;(set-frame-font "terminus")
@@ -411,7 +411,7 @@
       '((c3 "https://github.com/c3lang/tree-sitter-c3")))
 (add-to-list 'load-path "~/.dotfiles/emacs")
 ;; (load "~/.dotfiles/emacs/c3-ts-mode.el")
-(require 'c3-ts-mode)
+;;(require 'c3-ts-mode)
 
 
 ;; ORG MODE
@@ -430,10 +430,18 @@
 
 (define-key (current-global-map) (kbd "M-o") 'other-window)
 
-
-;; (global-set-key (kbd "C-c l") #'org-store-link)
-;; (global-set-key (kbd "C-c a") #'org-agenda)
-;; (global-set-key (kbd "C-c c") #'org-capture)
-
+;; ===== From newcomer mode ======
+(setopt delete-selection-mode t)
+(setopt mode-line-compact 'long)
+(setopt save-place-mode t)
+(setopt dired-mouse-drag-files t)
+(context-menu-mode)
+(setopt mouse-drag-and-drop-region t)
+(setopt mouse-drag-and-drop-region-cross-program t)
+(setopt mouse-yank-at-point t)
+(setopt package-autosuggest-mode t)
+(setopt compilation-scroll-output 'first-error)
+(setopt etags-regen-mode t)
+(setopt vc-auto-revert-mode t)
 
 
